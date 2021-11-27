@@ -17744,7 +17744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &497511722
 RectTransform:
   m_ObjectHideFlags: 0
@@ -49861,6 +49861,7 @@ MonoBehaviour:
   testValue: 0
   timeText: {fileID: 1964140259}
   speedText: {fileID: 1182487483}
+  tutorialPanel: {fileID: 497511721}
 --- !u!1 &1291241636
 GameObject:
   m_ObjectHideFlags: 0
