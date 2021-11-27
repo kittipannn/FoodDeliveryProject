@@ -11,6 +11,7 @@ public class CinemachineControls : MonoBehaviour
 
     [SerializeField] GameObject birdEyeCam;
     [SerializeField] GameObject playerCam;
+    [SerializeField] float timeSwitchCam;
 
     private bool startCamCinemachine = false;
     void Start()
@@ -48,7 +49,7 @@ public class CinemachineControls : MonoBehaviour
     }
     IEnumerator delayCinemachineStartGame() 
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(timeSwitchCam);
         birdEyeCam.SetActive(false);
     }
 }

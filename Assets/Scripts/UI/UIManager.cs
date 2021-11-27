@@ -19,7 +19,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text speedText;
     MotorcycleControl motorcycle;
     GameObject playerTest;
-    
+
+
+    [Header("TutorialPanel")]
+    private bool showtutorial;
+    [SerializeField] GameObject tutorialPanel;
+
+    private void Awake()
+    {
+        showtutorial = PlayerPrefs.GetInt("ShowTutorial") == 1 ? true : false;
+    }
     void Start()
     {
         //Events
@@ -31,6 +40,9 @@ public class UIManager : MonoBehaviour
         BehavSlider.value = gamePlay.currentBehavPlayer;
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
         playerTest = GameObject.FindGameObjectWithTag("Player");
+
+        // ทำงานเเมื่อ start Scene Tutorial
+        OnshowTutorial();
     }
 
     
@@ -59,6 +71,20 @@ public class UIManager : MonoBehaviour
     {
         int speed = Mathf.RoundToInt(speedPlayer);
         return speed.ToString();
+    }
+
+    private void OnshowTutorial() 
+    {
+        if (!showtutorial)
+        {
+            showtutorial = true;
+            PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
+            tutorialPanel.SetActive(true);
+        }
+        else
+        {
+            tutorialPanel.SetActive(false);
+        }
     }
 
 }
