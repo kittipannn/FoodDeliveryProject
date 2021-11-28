@@ -36,20 +36,21 @@ public class SphereController : MonoBehaviour
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
-            speedInput = Input.GetAxis("Vertical") * forwardAccel * 1000f;
-            currentSpeed += Time.deltaTime *2;
-            if (currentSpeed >= 5)
-            {
-                speedInput = 4000f;
-            }
-            if (currentSpeed >= 8)
-            {
-                speedInput = 5000f;
-            }
+            speedInput = Input.GetAxis("Vertical") * forwardAccel * 100f;
+            //currentSpeed += Time.deltaTime *2;
+            currentSpeed = rb.velocity.magnitude;
+            //if (currentSpeed >= 5)
+            //{
+            //    speedInput = 4000f;
+            //}
+            //if (currentSpeed >= 8)
+            //{
+            //    speedInput = 5000f;
+            //}
         }
         else if(Input.GetAxis("Vertical") < 0)
         {
-            speedInput = Input.GetAxis("Vertical") * reverseAccel * 1000f;
+            speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
         }
         else if(Input.GetAxis("Vertical") == 0)
         {

@@ -64,7 +64,7 @@ public class GamePlay : MonoBehaviour
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
         GameObject Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        Player.GetComponent<PlayerDemo>().enabled = false;
+        Player.GetComponent<SphereController>().enabled = false;
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
 
     }
@@ -87,7 +87,7 @@ public class GamePlay : MonoBehaviour
         timerIsRunning = true;
         GameEvents.gameEvents.UpdateStatusPlayer();
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDemo>().enabled = true;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<SphereController>().enabled = true;
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
     }
 

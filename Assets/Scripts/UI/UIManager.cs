@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         timeText.text = displayTimer();
-        speedText.text = displaySpeed(playerTest.GetComponent<Rigidbody>().velocity.magnitude);
+        //speedText.text = displaySpeed(playerTest.GetComponent<Rigidbody>().velocity.magnitude);
         //if (showTimeText)
         //    timeText.text = displayTimer();
     }
