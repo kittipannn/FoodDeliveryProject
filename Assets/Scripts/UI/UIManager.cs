@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [Header("Speedometer")]
     [SerializeField] TMP_Text speedText;
     MotorcycleControl motorcycle;
-    GameObject playerTest;
+    GameObject Player;
 
 
     [Header("TutorialPanel")]
@@ -39,7 +39,7 @@ public class UIManager : MonoBehaviour
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
         BehavSlider.value = gamePlay.currentBehavPlayer;
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
-        playerTest = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         // ทำงานเเมื่อ start Scene Tutorial
         OnshowTutorial();
@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         timeText.text = displayTimer();
-        //speedText.text = displaySpeed(playerTest.GetComponent<Rigidbody>().velocity.magnitude);
+        speedText.text = displaySpeed(Player.GetComponent<SphereController>().valueSpeed);
         //if (showTimeText)
         //    timeText.text = displayTimer();
     }
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     string displaySpeed(float speedPlayer) 
     {
-        int speed = Mathf.RoundToInt(speedPlayer);
+        int speed = Mathf.RoundToInt(speedPlayer) / 10;
         return speed.ToString();
     }
 

@@ -84536,6 +84536,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6537d95bdacab4da098c78a5770d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllvalueFromArdu: 
+  valueFromArduSteering: 
+  valueFromArduGas: 
+  valueFromArduBrake: 
+  port: COM3
   rb: {fileID: 2479139547586488857}
   forwardAccel: 30
   reverseAccel: 2

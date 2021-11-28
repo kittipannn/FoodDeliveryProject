@@ -7,6 +7,8 @@ public class SphereController : MonoBehaviour
 {
     SerialPort stream;
     public string AllvalueFromArdu;
+    public string valueFromArduSpeed;
+    public int valueSpeed;
     public string valueFromArduSteering;
     public string valueFromArduGas;
     public string valueFromArduBrake;
@@ -31,7 +33,8 @@ public class SphereController : MonoBehaviour
 
     public Transform steerAndWheel;
     public float maxSteerTurn = 25f;
-
+    string[] vec3;
+    int move = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,7 @@ public class SphereController : MonoBehaviour
         }
         stream = new SerialPort(port, 9600);
 
-        if(!stream.IsOpen)
+        if (!stream.IsOpen)
         {
             print("Opening " + port + ", baud 9600");
             stream.Open();
@@ -59,9 +62,10 @@ public class SphereController : MonoBehaviour
     {
         try
         {
+
             AllvalueFromArdu = stream.ReadLine();
-            Debug.Log(AllvalueFromArdu);
-            //string[] vec3 = AllvalueFromArdu.Split(',');
+            valueFromArduSpeed = AllvalueFromArdu;
+            valueSpeed = int.Parse(valueFromArduSpeed);
             //valueFromArduSteering = vec3[0];
             //valueFromArduGas = vec3[1];
             //valueFromArduBrake = vec3[2];
@@ -78,6 +82,62 @@ public class SphereController : MonoBehaviour
         }
         catch { }
 
+        if (valueSpeed >= 400)
+        {
+            valueSpeed = 400;
+        }
+        else if (valueSpeed <= 100)
+        {
+            valueSpeed = 0;
+        }
+        if (valueSpeed >= 100)
+        {
+            move = 1;
+        }
+        //else
+        //{
+        //    move = 0;
+        //}
+        inputHand();
+    }
+    void inputHand()
+    {
+        speedInput = 0f;
+        if (valueSpeed > 100)
+        {
+            speedInput = move * valueSpeed * 10f;
+            //currentSpeed += Time.deltaTime *2;
+            currentSpeed = rb.velocity.magnitude;
+            //if (currentSpeed >= 5)
+            //{
+            //    speedInput = 4000f;
+            //}
+            //if (currentSpeed >= 8)
+            //{
+            //    speedInput = 5000f;
+            //}
+        }
+
+        //else if (Input.GetAxis("Vertical") < 0)
+        //{
+        //    speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
+        //}
+        else if (Input.GetAxis("Vertical") == 0)
+        {
+            currentSpeed = 0f;
+            speedInput = 0f;
+        }
+
+        turnInput = Input.GetAxis("Horizontal");
+
+        steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
+
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+
+        transform.position = rb.transform.position;
+    }
+    void inputKeyboard() 
+    {
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
@@ -93,11 +153,11 @@ public class SphereController : MonoBehaviour
             //    speedInput = 5000f;
             //}
         }
-        else if(Input.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis("Vertical") < 0)
         {
             speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
         }
-        else if(Input.GetAxis("Vertical") == 0)
+        else if (Input.GetAxis("Vertical") == 0)
         {
             currentSpeed = 0f;
             speedInput = 0f;
@@ -111,7 +171,6 @@ public class SphereController : MonoBehaviour
 
         transform.position = rb.transform.position;
     }
-
     private void FixedUpdate()
     {
         if(Mathf.Abs(speedInput) > 0)
