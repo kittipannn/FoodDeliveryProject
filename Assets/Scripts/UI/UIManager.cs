@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         timeText.text = displayTimer();
-        speedText.text = displaySpeed(Player.GetComponent<SphereController>().valueSpeed);
+        speedText.text = displaySpeed(Player.GetComponent<SphereController>().PlayerSpeed);
         //if (showTimeText)
         //    timeText.text = displayTimer();
     }
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     string displaySpeed(float speedPlayer) 
     {
-        int speed = Mathf.RoundToInt(speedPlayer) / 10;
+        int speed = Mathf.RoundToInt(speedPlayer) / 10; 
         return speed.ToString();
     }
 
