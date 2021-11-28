@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO.Ports;
 
 public class SphereController : MonoBehaviour
 {
+    SerialPort stream;
+    public string AllvalueFromArdu;
+    public string valueFromArduSteering;
+    public string valueFromArduGas;
+    public string valueFromArduBrake;
+
+    public string port;
+
     public Rigidbody rb;
 
     public float forwardAccel = 3f;
@@ -26,6 +35,21 @@ public class SphereController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (string mysps in SerialPort.GetPortNames())
+        {
+            print(mysps);
+            if (mysps != "COM3") { port = mysps; break; }
+        }
+        stream = new SerialPort(port, 9600);
+
+        if(!stream.IsOpen)
+        {
+            print("Opening " + port + ", baud 9600");
+            stream.Open();
+            stream.ReadTimeout = 100;
+            stream.Handshake = Handshake.None;
+            if (stream.IsOpen) { print("Open"); }
+        }
         rb.transform.parent = null;
         currentSpeed = 0f;
     }
@@ -33,6 +57,27 @@ public class SphereController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        try
+        {
+            AllvalueFromArdu = stream.ReadLine();
+            Debug.Log(AllvalueFromArdu);
+            //string[] vec3 = AllvalueFromArdu.Split(',');
+            //valueFromArduSteering = vec3[0];
+            //valueFromArduGas = vec3[1];
+            //valueFromArduBrake = vec3[2];
+            //valueFromArduSteering = stream.ReadLine();
+            //valueFromArduGas = stream.ReadLine();
+            //valueFromArduBrake = stream.ReadLine();
+            //speedInput = float.Parse(valueFromArduGas);
+            ////breakInput = float.Parse(valueFromArduBrake);
+            //turnInput = float.Parse(valueFromArduSteering);
+            //Debug.Log(AllvalueFromArdu);
+            //Debug.Log(valueFromArduSteering);
+            //Debug.Log(valueFromArduGas);
+            //Debug.Log(valueFromArduBrake);
+        }
+        catch { }
+
         speedInput = 0f;
         if (Input.GetAxis("Vertical") > 0)
         {
