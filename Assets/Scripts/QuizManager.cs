@@ -21,9 +21,18 @@ public class QuizManager : MonoBehaviour
 
     int totalQuestions = 0;
     public int score;
-
+    private int numOfQuestionDone = 0;
+    public int NumOfQuestionDone { set { numOfQuestionDone += value; } }
+    [SerializeField] Button answerBtn;
+    [SerializeField] Button nextBtn;
+    Color ColorBtn;
     private void Start()
     {
+        ColorBtn = options[1].GetComponent<Image>().color;
+        answerBtn.onClick.AddListener(() => GenerateQuestionForAnswaer());
+        answerBtn.onClick.AddListener(() => OnAnswer());
+        nextBtn.onClick.AddListener(() => GenerateQuestionForAnswaer());
+        nextBtn.gameObject.SetActive(false);
         totalQuestions = QnA.Count;
         GoPanel.SetActive(false);
         GenerateQuestion();
@@ -39,10 +48,10 @@ public class QuizManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ShowAnswerPanel()
-    {
-        AnswersPanel.SetActive(true);
-    }
+    //public void ShowAnswerPanel()
+    //{
+    //    AnswersPanel.SetActive(true);
+    //}
 
     public void CloseAnsPanel()
     {
@@ -56,40 +65,38 @@ public class QuizManager : MonoBehaviour
         ScoreTxt.text = "Score: " + score + "/" + totalQuestions;
     }
 
-    public void Correct()
+    public void Correct(int idButton)
     {
         score += 1;
-        QnA.RemoveAt(currentQuestion);
+        QnA[currentQuestion].AnswerFromPlayer = idButton;
+        QnA[currentQuestion].AnswerDone = true;
         GenerateQuestion();
     }
 
-    public void Wrong()
+    public void Wrong(int idButton)
     {
-        QnA.RemoveAt(currentQuestion);
+        QnA[currentQuestion].AnswerFromPlayer = idButton;
+        QnA[currentQuestion].AnswerDone = true;
         GenerateQuestion();
     }
-
     void SetAnswer()
     {
         for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<AnswerScript>().isCorrect = false;
             options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QnA[currentQuestion].Answers[i];
-            
-
-            if (QnA[currentQuestion].CorrectAnswer == i+1)
+            if (QnA[currentQuestion].CorrectAnswer == i + 1)
             {
                 options[i].GetComponent<AnswerScript>().isCorrect = true;
             }
         }
     }
-
+    
     void GenerateQuestion()
     {
-        if(QnA.Count > 0)
+        if(numOfQuestionDone < QnA.Count)
         {
-            currentQuestion = Random.Range(0, QnA.Count);
-
+            questionDoneDetect();
             QuestionText.text = QnA[currentQuestion].Question;
             SetAnswer();
         }
@@ -98,5 +105,68 @@ public class QuizManager : MonoBehaviour
             Debug.Log("Out of Questions");
             QuizOver();
         }
+    }
+    List<int> indexQuestion;
+    List<int> sequenceQuestion = new List<int>();
+    void questionDoneDetect()
+    {
+        indexQuestion = new List<int>();
+        for (int i = 0; i < QnA.Count; i++)
+        {
+            if (!QnA[i].AnswerDone)
+            {
+                indexQuestion.Add(i);
+            }
+        }
+        if (indexQuestion.Count > 0)
+        {
+            currentQuestion = Random.Range(0, indexQuestion.Count);
+            currentQuestion = indexQuestion[currentQuestion];
+            sequenceQuestion.Add(currentQuestion);
+        }
+    }
+    int IndexAnswer = 0;
+    void setButtonAnswer(int indexAnswer) 
+    {
+        for (int i = 0; i < options.Length; i++)
+        {
+            options[i].GetComponent<Button>().interactable = false;
+            options[i].GetComponent<Image>().color = ColorBtn;
+            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QnA[indexAnswer].Answers[i];
+        }
+        int indexButton;
+        indexButton = QnA[indexAnswer].CorrectAnswer;
+        options[indexButton-1].GetComponent<Image>().color = Color.green;
+
+        if (QnA[indexAnswer].CorrectAnswer != QnA[indexAnswer].AnswerFromPlayer)
+        {
+            indexButton = QnA[indexAnswer].AnswerFromPlayer;
+            options[indexButton-1].GetComponent<Image>().color = Color.red;
+        }
+
+
+    }
+    
+    void GenerateQuestionForAnswaer() //ทำงานตอนกดปุ่มเฉลย กับ กดปุ่ม next 
+    {
+        if (IndexAnswer < sequenceQuestion.Count)
+        {
+            nextBtn.gameObject.SetActive(true);
+            int index = sequenceQuestion[IndexAnswer];
+            QuestionText.text = QnA[index].Question;
+            IndexAnswer++;
+            setButtonAnswer(index);
+        }
+        else
+        {
+            IndexAnswer = 0;
+            Debug.Log("Out of Questions");
+            QuizOver();
+        }
+    }
+    void OnAnswer() 
+    {
+        QuizPanel.SetActive(true);
+        GoPanel.SetActive(false);
     }
 }
