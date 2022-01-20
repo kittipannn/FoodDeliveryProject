@@ -25,6 +25,13 @@ public class UIManager : MonoBehaviour
     private bool showtutorial;
     [SerializeField] GameObject tutorialPanel;
 
+    [Header("FinishPanel")]
+    [SerializeField] CheckEvents checkEvents;
+    [SerializeField] GameObject finishPanel;
+    [SerializeField] List<Image> symbolInEventImg;
+    [SerializeField] List<Sprite> symbol;
+    [SerializeField] List<TextMeshProUGUI> descriptionText;
+
     private void Awake()
     {
         showtutorial = PlayerPrefs.GetInt("ShowTutorial") == 1 ? true : false;
@@ -34,6 +41,7 @@ public class UIManager : MonoBehaviour
         //Events
         GameEvents.gameEvents.onUpdateStatusPlayer += updateStatusPlayer;
         GameEvents.gameEvents.onStartGame += (() => showTimeText = true);
+        GameEvents.gameEvents.onFinishGame += OnShowFinishPanel;
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
@@ -72,6 +80,23 @@ public class UIManager : MonoBehaviour
         int speed = Mathf.RoundToInt(speedPlayer) / 10; 
         return speed.ToString();
     }
+    private void OnShowFinishPanel() 
+    {
+        finishPanel.SetActive(true);
+        for (int i = 0; i < checkEvents.eventInScenes.Count; i++)
+        {
+            if (!checkEvents.eventInScenes[i].eventCheck)
+            {
+                symbolInEventImg[i].overrideSprite = symbol[0];
+            }
+            else
+            {
+                symbolInEventImg[i].overrideSprite = symbol[1];
+            }
+            descriptionText[i].text = checkEvents.eventInScenes[i].eventDetails;
+        }
+
+    }
 
     private void OnshowTutorial() 
     {
@@ -80,11 +105,16 @@ public class UIManager : MonoBehaviour
             showtutorial = true;
             PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
             tutorialPanel.SetActive(true);
+            StartCoroutine(delaysetFalseTutorialPanel());
         }
         else
         {
             tutorialPanel.SetActive(false);
         }
     }
-
+    IEnumerator delaysetFalseTutorialPanel()
+    {
+        yield return new WaitForSeconds(5);
+        tutorialPanel.SetActive(false);
+    }
 }

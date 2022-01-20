@@ -11,6 +11,9 @@ public class SchoolArea : MonoBehaviour
     float limitedSpeedInSchoolArea = 10;
     SchoolAreaCollider schoolArea;
 
+    public int NumOfEvent;
+    bool enableEvent = false;
+
     void Start()
     {
         schoolArea = gameObject.GetComponentInChildren<SchoolAreaCollider>();
@@ -33,6 +36,11 @@ public class SchoolArea : MonoBehaviour
                 {
                     time = 0;
                     GameEvents.gameEvents.decreaseBehavPlayer(decreaseValue);
+                }
+                if (!enableEvent)
+                {
+                    enableEvent = true;
+                    GameEvents.gameEvents.checkEvents(NumOfEvent);
                 }
             }
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrossWalkCollider : MonoBehaviour
 {
     public SettingValue settingValue;
+    public int NumOfEvent;
     private void Start()
     {
         this.enabled = false;
@@ -21,6 +22,7 @@ public class CrossWalkCollider : MonoBehaviour
             Debug.Log("Please stop at the crosswalk");
             float valueToDecrease = settingValue.decreaseValueCrossWalk;
             GameEvents.gameEvents.decreaseBehavPlayer(valueToDecrease);
+            GameEvents.gameEvents.checkEvents(NumOfEvent);
         }
     }
     private void OnTriggerExit(Collider other)

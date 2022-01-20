@@ -48,6 +48,7 @@ public class SphereController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+#if false //Enable when connect arduino
         foreach (string mysps in SerialPort.GetPortNames())
         {
             print(mysps);
@@ -63,6 +64,7 @@ public class SphereController : MonoBehaviour
             stream.Handshake = Handshake.None;
             if (stream.IsOpen) { print("Open"); }
         }
+#endif
         rb.transform.parent = null;
         playerSpeed = 0;
     }
@@ -70,7 +72,8 @@ public class SphereController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        try
+#if false//Enable when connect arduino
+ try
         {
             //Value from Arduino = Steer,Speed,Break,Turn signal
 
@@ -93,18 +96,20 @@ public class SphereController : MonoBehaviour
             //Debug.Log(valueFromArduBrake);
         }
         catch { }
+#endif
 
-        if (playerSpeed >= PlayerSetting.maxSpeedValue)
-            playerSpeed = PlayerSetting.maxSpeedValue;
-        else if (playerSpeed <= PlayerSetting.minSpeedValue)
-            playerSpeed = 0;
+        //if (playerSpeed >= PlayerSetting.maxSpeedValue)
+        //    playerSpeed = PlayerSetting.maxSpeedValue;
+        //else if (playerSpeed <= PlayerSetting.minSpeedValue)
+        //    playerSpeed = 0;
 
         //if (playerSpeed >= PlayerSetting.minSpeedValue)
         //    move = true;
         //else
         //    move = false;
 
-        inputHand();
+        //inputHand();
+        inputKeyboard();
     }
     void inputHand()
     {
@@ -115,7 +120,7 @@ public class SphereController : MonoBehaviour
             speedInput = playerSpeed * 10f;
        }
 
-       
+
         //else if (Input.GetAxis("Vertical") < 0)
         //{
         //    speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
@@ -140,7 +145,7 @@ public class SphereController : MonoBehaviour
         if (Input.GetAxis("Vertical") > 0)
         {
             speedInput = Input.GetAxis("Vertical") * forwardAccel * 100f;
-            //currentSpeed += Time.deltaTime *2;
+            //currentSpeed += Time.deltaTime * 2;
             playerSpeed = rb.velocity.magnitude;
             //if (currentSpeed >= 5)
             //{

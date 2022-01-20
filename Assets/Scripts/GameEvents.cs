@@ -35,12 +35,28 @@ public class GameEvents : MonoBehaviour
             onStartTitleGame();
         }
     }
+    public event Action<int> oncheckEvents; //checkevent in scenes
+    public void checkEvents(int valus) 
+    {
+        if (oncheckEvents != null)
+        {
+            oncheckEvents(valus);
+        }
+    }
     public event Action onStartGame; // เมื่อเริ่มเกม
     public void startGame()
     {
         if (onStartGame != null)
         {
             onStartGame();
+        }
+    }
+    public event Action onFinishGame; // when player moves to finishPoint
+    public void finishGame() 
+    {
+        if (onFinishGame != null)
+        {
+            onFinishGame();
         }
     }
     public event Action onGameOver;
