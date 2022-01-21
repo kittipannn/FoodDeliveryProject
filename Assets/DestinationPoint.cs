@@ -9,6 +9,7 @@ public class DestinationPoint : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameEvents.gameEvents.finishGame();
+            //GameObject.FindObjectOfType<UIManager>().OnshowTutorial();
         }
     }
 }
