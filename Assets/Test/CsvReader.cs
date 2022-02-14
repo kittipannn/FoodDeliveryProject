@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class CsvReader : MonoBehaviour
 {
-    public TextAsset DataTextAsset;
+    public TextAsset dataText;
     public Text Q;
     public Text Ans1;
     public Text Ans2;
@@ -20,10 +21,10 @@ public class CsvReader : MonoBehaviour
 
     void readCSV()
     {
-        string[] data = DataTextAsset.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+        string[] data = dataText.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
         int tableSIze = data.Length / 6 - 1;
 
-        for (int i = 1; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             Debug.Log(data[6 * (i + 1)]);
             Q.text = data[6 * (i + 1)];
@@ -34,4 +35,5 @@ public class CsvReader : MonoBehaviour
         }
 
     }
+
 }
