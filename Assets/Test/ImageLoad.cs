@@ -17,9 +17,11 @@ public class ImageLoad : MonoBehaviour
 
     void ImageLoader() 
     {
-        imagePath = "Image/Img1";
+        imagePath = "Image/Data3" + "/Data34" ;
         image = Resources.Load(imagePath) as Texture2D;
         img.texture = image;
-       
+        var colorImage = img.color;
+        colorImage.a = 1;
+        img.color = colorImage;
     }
 }

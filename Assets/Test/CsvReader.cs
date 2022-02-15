@@ -33,7 +33,11 @@ public class CsvReader : MonoBehaviour
             Ans3.text = data[6 * (i + 1) + 3];
             Ans4.text = data[6 * (i + 1) + 4];
         }
+        if (data[6 * (0 + 1) + 1] == "-")
+        {
+            Debug.Log(data[6 * (0 + 1) + 1]);
+        }
 
     }
-
+    
 }
