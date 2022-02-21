@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 231751662}
   - component: {fileID: 231751661}
   m_Layer: 5
-  m_Name: QuizPanel2
+  m_Name: QuestionText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5832,7 +5832,7 @@ GameObject:
   - component: {fileID: 915027761}
   - component: {fileID: 915027760}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: QuestionText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6558,6 +6558,7 @@ MonoBehaviour:
   GoPanel: {fileID: 1663010421}
   AnswersPanel: {fileID: 286120233}
   QuestionText: {fileID: 915027760}
+  posQuestion: 0
   ScoreTxt: {fileID: 1832315474}
   score: 0
   answerBtn: {fileID: 1079798366}
@@ -7180,7 +7181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -764, y: 19.00003}
+  m_AnchoredPosition: {x: -600, y: 19.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1166893800
@@ -7672,6 +7673,7 @@ MonoBehaviour:
   GoPanel: {fileID: 39851419}
   AnswersPanel: {fileID: 575924050}
   QuestionText: {fileID: 1428507479}
+  posQuestion: 0
   ScoreTxt: {fileID: 520623741}
   score: 0
   answerBtn: {fileID: 1838950201}
@@ -8656,7 +8658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -764, y: 19.00003}
+  m_AnchoredPosition: {x: -600, y: 19.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494970730
@@ -10824,7 +10826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -764, y: 19.00003}
+  m_AnchoredPosition: {x: -600, y: 19.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840814376
@@ -11284,6 +11286,7 @@ MonoBehaviour:
   GoPanel: {fileID: 2037883778}
   AnswersPanel: {fileID: 433245208}
   QuestionText: {fileID: 884353178}
+  posQuestion: 0
   ScoreTxt: {fileID: 456277084}
   score: 0
   answerBtn: {fileID: 1704155029}
@@ -12804,7 +12807,7 @@ GameObject:
   - component: {fileID: 2062500194}
   - component: {fileID: 2062500193}
   m_Layer: 5
-  m_Name: QuizPanel3
+  m_Name: QuestionText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

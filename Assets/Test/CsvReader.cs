@@ -17,6 +17,8 @@ public class CsvReader : MonoBehaviour
     void Start()
     {
         readCSV();
+        Q.rectTransform.position = new Vector2(Q.rectTransform.position.x + 500, Q.rectTransform.position.y);
+        Q.alignment = TextAnchor.MiddleLeft;
     }
 
     void readCSV()

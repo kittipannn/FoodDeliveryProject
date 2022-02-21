@@ -24,6 +24,7 @@ public class QuizManager : MonoBehaviour
     public GameObject AnswersPanel;
 
     public TMP_Text QuestionText;
+    [SerializeField] float posQuestion = 500f;
     public TMP_Text ScoreTxt;
 
     int totalQuestions = 0;
@@ -146,18 +147,18 @@ public class QuizManager : MonoBehaviour
     }
     void setImgaeQuestion() 
     {
-        if (QuestionsAndAnswersList.QnA[currentQuestion].ImageName != "-")
+        if (QuestionsAndAnswersList.QnA[currentQuestion].ImageName != "-") //Load Image
         {
-            Debug.Log(QuestionsAndAnswersList.QnA[currentQuestion].ImageName);
-
-            Debug.Log("LoadImage");
             imageLoader(QuestionsAndAnswersList.QnA[currentQuestion].ImageName);
+
+            setPosQuestionforImage(true);
             setAlphaImage(1);
+
         }
-        else
+        else // No Image
         {
-            Debug.Log("Image");
             QuestionImage.texture = null;
+            setPosQuestionforImage(false);
             setAlphaImage(0);
         }
     }
@@ -175,6 +176,21 @@ public class QuizManager : MonoBehaviour
         QuestionImage.texture = image;
         QuestionImage.SetNativeSize();
         QuestionImage.transform.localScale = QuestionImage.transform.localScale / 2;
+    }
+    void setPosQuestionforImage(bool haveImage) 
+    {
+
+        if (haveImage)
+        {
+            QuestionText.alignment = TextAlignmentOptions.MidlineLeft;
+            posQuestion = 500;
+        }
+        else
+        {
+            QuestionText.alignment = TextAlignmentOptions.Center;
+            posQuestion = 0;
+        }
+        QuestionText.rectTransform.localPosition = new Vector2(posQuestion, 0);
     }
     List<int> indexQuestion;
     List<int> sequenceQuestion = new List<int>();
