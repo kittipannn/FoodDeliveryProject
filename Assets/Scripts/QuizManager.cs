@@ -7,16 +7,15 @@ using UnityEngine.UI;
 using System;
 public class QuizManager : MonoBehaviour
 {
-    public List<QuestionsAndAnswers> QnA;
-    public QuestionsAndAnswersList QuestionsAndAnswersList = new QuestionsAndAnswersList();
-
+    public Button[] categoryStart;
+    public QuestionsAndAnswersList questionAndAnswerList;
+    public CsvReader data;
     public GameObject[] options;
     public RawImage QuestionImage;
     public int currentQuestion;
-    [SerializeField] protected TextAsset DataTextAsset;
     string imagePath;
+    int numOfData;
     Texture2D image;
-
 
     public GameObject StartPanel;
     public GameObject QuizPanel;
@@ -36,40 +35,97 @@ public class QuizManager : MonoBehaviour
     Color ColorBtn;
     private void Awake()
     {
-        CSVReader();
+        //CSVReader();
     }
     private void Start()
     {
         ColorBtn = options[1].GetComponent<Image>().color;
+        setBtn();
+        //categoryStart.onClick.AddListener(() => OnStartTest());
+        nextBtn.gameObject.SetActive(false);
+        GoPanel.SetActive(false);
+    }
+    void setBtn() 
+    {
+        categoryStart[0].onClick.AddListener(() => OnStartTest(0));
+        categoryStart[1].onClick.AddListener(() => OnStartTest(1));
+        categoryStart[2].onClick.AddListener(() => OnStartTest(2));
+        categoryStart[3].onClick.AddListener(() => OnStartTest(3));
+        categoryStart[4].onClick.AddListener(() => OnStartTest(4));
+        categoryStart[5].onClick.AddListener(() => OnStartTest(5));
+        categoryStart[6].onClick.AddListener(() => OnStartTest(6));
+        categoryStart[7].onClick.AddListener(() => OnStartTest(7));
+        categoryStart[8].onClick.AddListener(() => OnStartTest(8));
         answerBtn.onClick.AddListener(() => GenerateQuestionForAnswer());
         answerBtn.onClick.AddListener(() => OnAnswer());
         nextBtn.onClick.AddListener(() => GenerateQuestionForAnswer());
-        nextBtn.gameObject.SetActive(false);
-        totalQuestions = QuestionsAndAnswersList.QnA.Length;
-        GoPanel.SetActive(false);
+    }
+    void OnStartTest(int num) 
+    {
+        Debug.Log(num);
+        switch (num)
+        {
+            case 0:
+                questionAndAnswerList = data.QuestionsAndAnswersList1;
+                numOfData = 0;
+                break;
+            case 1:
+                questionAndAnswerList = data.QuestionsAndAnswersList2;
+                numOfData = 1;
+                break;
+            case 2:
+                questionAndAnswerList = data.QuestionsAndAnswersList3;
+                numOfData = 2;
+                break;
+            case 3:
+                questionAndAnswerList = data.QuestionsAndAnswersList4;
+                numOfData = 3;
+                break;
+            case 4:
+                questionAndAnswerList = data.QuestionsAndAnswersList5;
+                numOfData = 4;
+                break;
+            case 5:
+                questionAndAnswerList = data.QuestionsAndAnswersList6;
+                numOfData = 5;
+                break;
+            case 6:
+                questionAndAnswerList = data.QuestionsAndAnswersList7;
+                numOfData = 6;
+                break;
+            case 7:
+                questionAndAnswerList = data.QuestionsAndAnswersList8;
+                numOfData = 7;
+                break;
+            case 8:
+                questionAndAnswerList = data.QuestionsAndAnswersList9;
+                numOfData = 8;
+                break;
+        }
+        totalQuestions = questionAndAnswerList.QnA.Length;
         GenerateQuestion();
     }
-    void CSVReader()
-    {
-        string[] data = DataTextAsset.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
-        int tableSIze = data.Length / 7 - 1;
-        QuestionsAndAnswersList.QnA = new QuestionsAndAnswers[4];// จะใช้ให้เปลลี่ยนเป็น tableSIze
+    //void CSVReader()
+    //{
+    //    string[] data = DataTextAsset.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+    //    int tableSIze = data.Length / 7 - 1;
+    //    questionAndAnswerList.QnA = new QuestionsAndAnswers[4];// จะใช้ให้เปลลี่ยนเป็น tableSIze
 
-        for (int i = 0; i < 4; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
-        {
-            QuestionsAndAnswersList.QnA[i] = new QuestionsAndAnswers();
+    //    for (int i = 0; i < 4; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
+    //    {
+    //        questionAndAnswerList.QnA[i] = new QuestionsAndAnswers();
 
-            QuestionsAndAnswersList.QnA[i].Question = data[7 * (i + 1)];
-            for (int j = 0; j < 4; j++)
-            {
-                QuestionsAndAnswersList.QnA[i].Answers[j] = data[7 * (i + 1) + (j + 1)];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
-            }
-            QuestionsAndAnswersList.QnA[i].ImageName = data[7 * (i + 1) + 5];
-            QuestionsAndAnswersList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
+    //        questionAndAnswerList.QnA[i].Question = data[7 * (i + 1)];
+    //        for (int j = 0; j < 4; j++)
+    //        {
+    //            questionAndAnswerList.QnA[i].Answers[j] = data[7 * (i + 1) + (j + 1)];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
+    //        }
+    //        questionAndAnswerList.QnA[i].ImageName = data[7 * (i + 1) + 5];
+    //        questionAndAnswerList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
             
-        }
+    //    }
 
-    }
+    //}
 
     public void QuizStart()
     {
@@ -102,16 +158,16 @@ public class QuizManager : MonoBehaviour
     {
 
         score += 1;
-        QuestionsAndAnswersList.QnA[currentQuestion].AnswerFromPlayer = idButton;
-        QuestionsAndAnswersList.QnA[currentQuestion].AnswerDone = true;
+        questionAndAnswerList.QnA[currentQuestion].AnswerFromPlayer = idButton;
+        questionAndAnswerList.QnA[currentQuestion].AnswerDone = true;
         GenerateQuestion();
     }
 
     public void Wrong(int idButton)
     {
 
-        QuestionsAndAnswersList.QnA[currentQuestion].AnswerFromPlayer = idButton;
-        QuestionsAndAnswersList.QnA[currentQuestion].AnswerDone = true;
+        questionAndAnswerList.QnA[currentQuestion].AnswerFromPlayer = idButton;
+        questionAndAnswerList.QnA[currentQuestion].AnswerDone = true;
         GenerateQuestion();
     }
 
@@ -121,8 +177,8 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<AnswerScript>().isCorrect = false;
-            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QuestionsAndAnswersList.QnA[currentQuestion].Answers[i];
-            if (QuestionsAndAnswersList.QnA[currentQuestion].CorrectAnswer == i + 1)
+            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = questionAndAnswerList.QnA[currentQuestion].Answers[i];
+            if (questionAndAnswerList.QnA[currentQuestion].CorrectAnswer == i + 1)
             {
                 options[i].GetComponent<AnswerScript>().isCorrect = true;
             }
@@ -132,10 +188,10 @@ public class QuizManager : MonoBehaviour
     void GenerateQuestion()
     {
 
-        if (numOfQuestionDone < QuestionsAndAnswersList.QnA.Length)
+        if (numOfQuestionDone < questionAndAnswerList.QnA.Length)
         {
             questionDoneDetect();
-            QuestionText.text = QuestionsAndAnswersList.QnA[currentQuestion].Question;
+            QuestionText.text = questionAndAnswerList.QnA[currentQuestion].Question;
             setImgaeQuestion();
             SetAnswer();
         }
@@ -147,9 +203,9 @@ public class QuizManager : MonoBehaviour
     }
     void setImgaeQuestion() 
     {
-        if (QuestionsAndAnswersList.QnA[currentQuestion].ImageName != "-") //Load Image
+        if (questionAndAnswerList.QnA[currentQuestion].ImageName != "-") //Load Image
         {
-            imageLoader(QuestionsAndAnswersList.QnA[currentQuestion].ImageName);
+            imageLoader(questionAndAnswerList.QnA[currentQuestion].ImageName);
 
             setPosQuestionforImage(true);
             setAlphaImage(1);
@@ -171,7 +227,7 @@ public class QuizManager : MonoBehaviour
     void imageLoader(string nameImage)
     {
         QuestionImage.transform.localScale = new Vector3(1, 1, 1);
-        imagePath = "Image/" + DataTextAsset.name + "/" + nameImage;
+        imagePath = "Image/" + data.DataTextAsset[numOfData].name + "/" + nameImage;
         image = Resources.Load(imagePath) as Texture2D;
         QuestionImage.texture = image;
         QuestionImage.SetNativeSize();
@@ -198,9 +254,9 @@ public class QuizManager : MonoBehaviour
     {
 
         indexQuestion = new List<int>();
-        for (int i = 0; i < QuestionsAndAnswersList.QnA.Length; i++)
+        for (int i = 0; i < questionAndAnswerList.QnA.Length; i++)
         {
-            if (!QuestionsAndAnswersList.QnA[i].AnswerDone)
+            if (!questionAndAnswerList.QnA[i].AnswerDone)
             {
                 indexQuestion.Add(i);
             }
@@ -220,15 +276,15 @@ public class QuizManager : MonoBehaviour
         {
             options[i].GetComponent<Button>().interactable = false;
             options[i].GetComponent<Image>().color = ColorBtn;
-            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = QuestionsAndAnswersList.QnA[indexAnswer].Answers[i];
+            options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = questionAndAnswerList.QnA[indexAnswer].Answers[i];
         }
         int indexButton;
-        indexButton = QuestionsAndAnswersList.QnA[indexAnswer].CorrectAnswer;
+        indexButton = questionAndAnswerList.QnA[indexAnswer].CorrectAnswer;
         options[indexButton - 1].GetComponent<Image>().color = Color.green;
 
-        if (QuestionsAndAnswersList.QnA[indexAnswer].CorrectAnswer != QuestionsAndAnswersList.QnA[indexAnswer].AnswerFromPlayer)
+        if (questionAndAnswerList.QnA[indexAnswer].CorrectAnswer != questionAndAnswerList.QnA[indexAnswer].AnswerFromPlayer)
         {
-            indexButton = QuestionsAndAnswersList.QnA[indexAnswer].AnswerFromPlayer;
+            indexButton = questionAndAnswerList.QnA[indexAnswer].AnswerFromPlayer;
             options[indexButton - 1].GetComponent<Image>().color = Color.red;
         }
 
@@ -254,7 +310,7 @@ public class QuizManager : MonoBehaviour
         {
             nextBtn.gameObject.SetActive(true);
             int index = sequenceQuestion[IndexAnswer];
-            QuestionText.text = QuestionsAndAnswersList.QnA[index].Question;
+            QuestionText.text = questionAndAnswerList.QnA[index].Question;
             IndexAnswer++;
             setButtonAnswer(index);
         }

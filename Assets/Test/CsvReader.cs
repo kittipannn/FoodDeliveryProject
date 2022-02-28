@@ -3,43 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.IO;
+
 
 public class CsvReader : MonoBehaviour
 {
-    public TextAsset dataText;
-    public Text Q;
-    public Text Ans1;
-    public Text Ans2;
-    public Text Ans3;
-    public Text Ans4;
 
-    void Start()
+    public QuestionsAndAnswersList QuestionsAndAnswersList1 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList2 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList3 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList4 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList5 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList6 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList7 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList8 = new QuestionsAndAnswersList();
+    public QuestionsAndAnswersList QuestionsAndAnswersList9 = new QuestionsAndAnswersList();
+
+    public TextAsset[] DataTextAsset;
+    string imagePath;
+    Texture2D image;
+    private void Awake()
     {
-        readCSV();
-        Q.rectTransform.position = new Vector2(Q.rectTransform.position.x + 500, Q.rectTransform.position.y);
-        Q.alignment = TextAnchor.MiddleLeft;
+        for (int i = 0; i < 9; i++)
+        {
+            CSVReader(i);
+            Debug.Log("Category " + (i + 1));
+        }
     }
 
-    void readCSV()
-    {
-        string[] data = dataText.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
-        int tableSIze = data.Length / 6 - 1;
 
-        for (int i = 0; i < 1; i++)
+    void CSVReader(int num)
+    {
+        QuestionsAndAnswersList QuestionsAndAnswersList;
+        QuestionsAndAnswersList = QnAList(num);
+
+        string[] data = DataTextAsset[num].text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+        int tableSIze = data.Length / 7 - 1;
+        QuestionsAndAnswersList.QnA = new QuestionsAndAnswers[tableSIze];// จะใช้ให้เปลลี่ยนเป็น tableSIze
+
+        for (int i = 0; i < tableSIze; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
         {
-            Debug.Log(data[6 * (i + 1)]);
-            Q.text = data[6 * (i + 1)];
-            Ans1.text = data[6 * (i + 1) + 1];
-            Ans2.text = data[6 * (i + 1) + 2];
-            Ans3.text = data[6 * (i + 1) + 3];
-            Ans4.text = data[6 * (i + 1) + 4];
-        }
-        if (data[6 * (0 + 1) + 1] == "-")
-        {
-            Debug.Log(data[6 * (0 + 1) + 1]);
+            QuestionsAndAnswersList.QnA[i] = new QuestionsAndAnswers();
+
+            QuestionsAndAnswersList.QnA[i].Question = data[7 * (i + 1)];
+            for (int j = 0; j < 4; j++)
+            {
+                QuestionsAndAnswersList.QnA[i].Answers[j] = data[7 * (i + 1) + (j + 1)];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
+            }
+            QuestionsAndAnswersList.QnA[i].ImageName = data[7 * (i + 1) + 5];
+            QuestionsAndAnswersList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
+
         }
 
     }
-    
+    QuestionsAndAnswersList QnAList(int num) 
+    {
+        switch (num)
+        {
+            case 0:
+                return QuestionsAndAnswersList1;
+                break;
+            case 1:
+                return QuestionsAndAnswersList2;
+                break;
+            case 2:
+                return QuestionsAndAnswersList3;
+                break;
+            case 3:
+                return QuestionsAndAnswersList4;
+                break;
+            case 4:
+                return QuestionsAndAnswersList5;
+                break;
+            case 5:
+                return QuestionsAndAnswersList6;
+                break;
+            case 6:
+                return QuestionsAndAnswersList7;
+                break;
+            case 7:
+                return QuestionsAndAnswersList8;
+                break;
+            case 8:
+                return QuestionsAndAnswersList9;
+                break;
+
+            default:
+                return QuestionsAndAnswersList1;
+        }
+        
+    }
+
 }
