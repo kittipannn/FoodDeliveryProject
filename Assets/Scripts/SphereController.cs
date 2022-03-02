@@ -37,7 +37,7 @@ public class SphereController : MonoBehaviour
     //public float gravityForce = 10f;
 
     private float speedInput;
-    private float turnInput;
+    public float turnInput;
 
     //private bool grounded;
     //public LayerMask whatIsground;
@@ -181,4 +181,13 @@ public class SphereController : MonoBehaviour
             rb.AddForce(transform.forward * speedInput);
         }
     }
+
+    //
+    public float playerMarkerRot()
+    {
+        float markerRot;
+        markerRot = turnInput;
+        return markerRot;
+    }
+
 }

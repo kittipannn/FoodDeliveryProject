@@ -42,6 +42,8 @@ namespace SAP2D {
 
         private SAP_GridSource grid;
 
+        public SphereController playerMkRot;
+
         private void Start()
         {
             pathfinder = SAP2DPathfinder.singleton;
@@ -49,6 +51,8 @@ namespace SAP2D {
 
         private void Update()
         {
+            
+
             if (Target != null)
             {
                 grid = pathfinder.GetGrid(Config.GridIndex);
@@ -96,6 +100,11 @@ namespace SAP2D {
                     Move();
 
             }
+        }
+
+        private void FixedUpdate()
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * Input.GetAxis("Vertical")));
         }
 
         private IEnumerator FindPath()
