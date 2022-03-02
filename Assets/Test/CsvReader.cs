@@ -29,14 +29,14 @@ public class CsvReader : MonoBehaviour
             Debug.Log("Category " + (i + 1));
         }
     }
-
+    
 
     void CSVReader(int num)
     {
         QuestionsAndAnswersList QuestionsAndAnswersList;
         QuestionsAndAnswersList = QnAList(num);
 
-        string[] data = DataTextAsset[num].text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+        string[] data = DataTextAsset[num].text.Split(new string[] { ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
         int tableSIze = data.Length / 7 - 1;
         QuestionsAndAnswersList.QnA = new QuestionsAndAnswers[tableSIze];// จะใช้ให้เปลลี่ยนเป็น tableSIze
 

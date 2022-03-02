@@ -24,6 +24,7 @@ public class QuizManager : MonoBehaviour
 
     public TMP_Text QuestionText;
     [SerializeField] float posQuestion = 500f;
+    [SerializeField] float widthQuestion = 500f;
     public TMP_Text ScoreTxt;
 
     int totalQuestions = 0;
@@ -33,6 +34,7 @@ public class QuizManager : MonoBehaviour
     [SerializeField] Button answerBtn;
     [SerializeField] Button nextBtn;
     Color ColorBtn;
+    public Sprite defaultImage , trueImgae, falseImage;
     private void Awake()
     {
         //CSVReader();
@@ -127,15 +129,8 @@ public class QuizManager : MonoBehaviour
 
     //}
 
-    public void QuizStart()
-    {
-        StartPanel.SetActive(false);
-    }
 
-    public void BackToQuizMenu()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+ 
 
     //public void ShowAnswerPanel()
     //{
@@ -151,7 +146,7 @@ public class QuizManager : MonoBehaviour
     {
         QuizPanel.SetActive(false);
         GoPanel.SetActive(true);
-        ScoreTxt.text = "Score: " + score + "/" + totalQuestions;
+        ScoreTxt.text = score + "/" + totalQuestions;
     }
 
     public void Correct(int idButton)
@@ -192,7 +187,7 @@ public class QuizManager : MonoBehaviour
         {
             questionDoneDetect();
             QuestionText.text = questionAndAnswerList.QnA[currentQuestion].Question;
-            setImgaeQuestion();
+            setImgaeQuestion(currentQuestion);
             SetAnswer();
         }
         else
@@ -201,11 +196,11 @@ public class QuizManager : MonoBehaviour
             QuizOver();
         }
     }
-    void setImgaeQuestion() 
+    void setImgaeQuestion(int indexQuestion) 
     {
         if (questionAndAnswerList.QnA[currentQuestion].ImageName != "-") //Load Image
         {
-            imageLoader(questionAndAnswerList.QnA[currentQuestion].ImageName);
+            imageLoader(questionAndAnswerList.QnA[indexQuestion].ImageName);
 
             setPosQuestionforImage(true);
             setAlphaImage(1);
@@ -239,14 +234,17 @@ public class QuizManager : MonoBehaviour
         if (haveImage)
         {
             QuestionText.alignment = TextAlignmentOptions.MidlineLeft;
-            posQuestion = 500;
+            posQuestion = 365;
+            widthQuestion = 1150;
         }
         else
         {
             QuestionText.alignment = TextAlignmentOptions.Center;
             posQuestion = 0;
+            widthQuestion = 1580;
         }
-        QuestionText.rectTransform.localPosition = new Vector2(posQuestion, 0);
+        QuestionText.rectTransform.sizeDelta = new Vector2(widthQuestion, 350);
+        QuestionText.rectTransform.localPosition = new Vector2(posQuestion, QuestionText.rectTransform.localPosition.y);
     }
     List<int> indexQuestion;
     List<int> sequenceQuestion = new List<int>();
@@ -275,44 +273,32 @@ public class QuizManager : MonoBehaviour
         for (int i = 0; i < options.Length; i++)
         {
             options[i].GetComponent<Button>().interactable = false;
-            options[i].GetComponent<Image>().color = ColorBtn;
+            options[i].GetComponent<Image>().sprite = defaultImage;
             options[i].transform.GetChild(0).GetComponent<TMP_Text>().text = questionAndAnswerList.QnA[indexAnswer].Answers[i];
         }
         int indexButton;
         indexButton = questionAndAnswerList.QnA[indexAnswer].CorrectAnswer;
-        options[indexButton - 1].GetComponent<Image>().color = Color.green;
+        options[indexButton - 1].GetComponent<Image>().sprite = trueImgae;
 
         if (questionAndAnswerList.QnA[indexAnswer].CorrectAnswer != questionAndAnswerList.QnA[indexAnswer].AnswerFromPlayer)
         {
             indexButton = questionAndAnswerList.QnA[indexAnswer].AnswerFromPlayer;
-            options[indexButton - 1].GetComponent<Image>().color = Color.red;
+            options[indexButton - 1].GetComponent<Image>().sprite = falseImage;
         }
 
     }
     
     void GenerateQuestionForAnswer() //ทำงานตอนกดปุ่มเฉลย กับ กดปุ่ม next 
     {
-        //if (IndexAnswer < sequenceQuestion.Count)
-        //{
-        //    nextBtn.gameObject.SetActive(true);
-        //    int index = sequenceQuestion[IndexAnswer];
-        //    QuestionText.text = QnA[index].Question;
-        //    IndexAnswer++;
-        //    setButtonAnswer(index);
-        //}
-        //else
-        //{
-        //    IndexAnswer = 0;
-        //    Debug.Log("Out of Questions");
-        //    QuizOver();
-        //}
         if (IndexAnswer < sequenceQuestion.Count)
         {
             nextBtn.gameObject.SetActive(true);
             int index = sequenceQuestion[IndexAnswer];
             QuestionText.text = questionAndAnswerList.QnA[index].Question;
+            setImgaeQuestion(index);
             IndexAnswer++;
             setButtonAnswer(index);
+            
         }
         else
         {
