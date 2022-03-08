@@ -45,7 +45,9 @@ public class UIManager : MonoBehaviour
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
-        BehavSlider.value = gamePlay.currentBehavPlayer;
+        BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
+        //BehavSlider.value =  gamePlay.currentBehavPlayer;
+
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -63,7 +65,8 @@ public class UIManager : MonoBehaviour
     }
     private void updateStatusPlayer() //ลดเมื่อผู้เล่นพฤติพฤติกรรมไม่ดี
     {
-        BehavSlider.value = gamePlay.currentBehavPlayer;
+        BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
+        //BehavSlider.value =  gamePlay.currentBehavPlayer;
     }
 
     string displayTimer()
@@ -71,7 +74,7 @@ public class UIManager : MonoBehaviour
         float timer = gamePlay.LimitTime;
         float minutes = Mathf.Floor(timer / 60);
         float seconds = Mathf.RoundToInt(timer % 60);
-        string showtime = string.Format("{0:00} : {1:00}", minutes, seconds);
+        string showtime = string.Format("{0:00}   {1:00}", minutes, seconds);
         return showtime;
     }
 

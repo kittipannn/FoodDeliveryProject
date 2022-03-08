@@ -9,23 +9,26 @@ public class OnButtonManagerStartScene : MonoBehaviour
     [SerializeField] Button startBtn;
     [SerializeField] Button tutorialBtn;
     [SerializeField] Button testBtn;
+    [SerializeField] SceneLoader sceneLoader;
+    
 
     private void Start()
     {
         startBtn.onClick.AddListener(() => onStartBtn());
-
+        tutorialBtn.onClick.AddListener(() => onTutorialBtn());
         testBtn.onClick.AddListener(() => onTestBtn());
     }
     void onStartBtn()
     {
-        SceneManager.LoadSceneAsync("TutorialScene");
+        sceneLoader.LoadingScene("TutorialScene");
     }
-    void onTutorialBtn() 
+    void onTutorialBtn()
     {
-        //SceneManager.LoadSceneAsync("TutorialScene");
+        //sceneLoader.LoadingScene("TutorialScene");
+        Debug.Log("Tiutorial");
     }
     void onTestBtn() 
     {
-        SceneManager.LoadSceneAsync("TestScene");
+        sceneLoader.LoadingScene("TestScene");
     }
 }
