@@ -5,21 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-<<<<<<< HEAD
   - enabled: 1
-=======
-  - enabled: 0
->>>>>>> Kiawmint
+    path: Assets/Scenes/Scenes/CityScene.unity
+    guid: 101868399416cc848a71918c5c13f837
+  - enabled: 1
+    path: Assets/Scenes/Scenes/CountrysideScene.unity
+    guid: 6ad7d44b9b21bb146a394bdc36964a4c
+  - enabled: 1
     path: Assets/Scenes/Scenes/Menu.unity
-    guid: f89b5b7527c762246ae887af7f1dca2c
+    guid: 38047228056bfcd46b4762079d4cea69
   - enabled: 1
     path: Assets/Scenes/Scenes/TestScene.unity
     guid: 7f98f0201da1211449d01f69cfa587f2
-<<<<<<< HEAD
   - enabled: 1
-=======
-  - enabled: 0
->>>>>>> Kiawmint
     path: Assets/Scenes/Scenes/TutorialScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: ce7ec725cb1202e4f8e71c854d5323d7
   m_configObjects: {}
