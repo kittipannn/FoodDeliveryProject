@@ -16,4 +16,5 @@ public class SettingValue : ScriptableObject
 
     [Header("Traffic Light Setting")]
     public float decreaseValueTrafficLight;
+
 }

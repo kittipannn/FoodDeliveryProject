@@ -18,12 +18,19 @@ public class UIManager : MonoBehaviour
     [Header("Speedometer")]
     [SerializeField] TMP_Text speedText;
     MotorcycleControl motorcycle;
-    GameObject playerTest;
+    GameObject Player;
 
 
     [Header("TutorialPanel")]
     private bool showtutorial;
     [SerializeField] GameObject tutorialPanel;
+
+    [Header("FinishPanel")]
+    [SerializeField] CheckEvents checkEvents;
+    [SerializeField] GameObject finishPanel;
+    [SerializeField] List<Image> symbolInEventImg;
+    [SerializeField] List<Sprite> symbol;
+    [SerializeField] List<TextMeshProUGUI> descriptionText;
 
     private void Awake()
     {
@@ -34,12 +41,13 @@ public class UIManager : MonoBehaviour
         //Events
         GameEvents.gameEvents.onUpdateStatusPlayer += updateStatusPlayer;
         GameEvents.gameEvents.onStartGame += (() => showTimeText = true);
+        GameEvents.gameEvents.onFinishGame += OnShowFinishPanel;
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
         BehavSlider.value = gamePlay.currentBehavPlayer;
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
-        playerTest = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         // ทำงานเเมื่อ start Scene Tutorial
         OnshowTutorial();
@@ -49,7 +57,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         timeText.text = displayTimer();
-        //speedText.text = displaySpeed(playerTest.GetComponent<Rigidbody>().velocity.magnitude);
+        speedText.text = displaySpeed(Player.GetComponent<SphereController>().PlayerSpeed);
         //if (showTimeText)
         //    timeText.text = displayTimer();
     }
@@ -69,22 +77,44 @@ public class UIManager : MonoBehaviour
 
     string displaySpeed(float speedPlayer) 
     {
-        int speed = Mathf.RoundToInt(speedPlayer);
+        int speed = Mathf.RoundToInt(speedPlayer) / 10; 
         return speed.ToString();
     }
+    private void OnShowFinishPanel() 
+    {
+        finishPanel.SetActive(true);
+        for (int i = 0; i < checkEvents.eventInScenes.Count; i++)
+        {
+            if (!checkEvents.eventInScenes[i].eventCheck)
+            {
+                symbolInEventImg[i].overrideSprite = symbol[0];
+            }
+            else
+            {
+                symbolInEventImg[i].overrideSprite = symbol[1];
+            }
+            descriptionText[i].text = checkEvents.eventInScenes[i].eventDetails;
+        }
 
-    private void OnshowTutorial() 
+    }
+
+    public void OnshowTutorial() 
     {
         if (!showtutorial)
         {
             showtutorial = true;
             PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
             tutorialPanel.SetActive(true);
+            StartCoroutine(delaysetFalseTutorialPanel());
         }
         else
         {
             tutorialPanel.SetActive(false);
         }
     }
-
+    IEnumerator delaysetFalseTutorialPanel()
+    {
+        yield return new WaitForSeconds(5);
+        tutorialPanel.SetActive(false);
+    }
 }
