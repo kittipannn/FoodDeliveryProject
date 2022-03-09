@@ -32,6 +32,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<Sprite> symbol;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
 
+    [Header("FinishPanel")]
+    [SerializeField] CheckEvents checkEvents;
+    [SerializeField] GameObject finishPanel;
+    [SerializeField] List<Image> symbolInEventImg;
+    [SerializeField] List<Sprite> symbol;
+    [SerializeField] List<TextMeshProUGUI> descriptionText;
+
     private void Awake()
     {
         showtutorial = PlayerPrefs.GetInt("ShowTutorial") == 1 ? true : false;
@@ -89,6 +96,11 @@ public class UIManager : MonoBehaviour
         return speed.ToString();
     }
     private void OnShowFinishPanel() 
+<<<<<<< HEAD
+    {
+        finishPanel.SetActive(true);
+        for (int i = 0; i < checkEvents.eventInScenes.Count; i++)
+=======
     {
         finishPanel.SetActive(true);
         for (int i = 0; i < checkEvents.eventInScenes.Count; i++)
@@ -108,6 +120,32 @@ public class UIManager : MonoBehaviour
 
     public void OnshowTutorial() 
     {
+        if (!showtutorial)
+        {
+            showtutorial = true;
+            PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
+            tutorialPanel.SetActive(true);
+            StartCoroutine(delaysetFalseTutorialPanel());
+        }
+        else
+>>>>>>> Kiawmint
+        {
+            if (!checkEvents.eventInScenes[i].eventCheck)
+            {
+                symbolInEventImg[i].overrideSprite = symbol[0];
+            }
+            else
+            {
+                symbolInEventImg[i].overrideSprite = symbol[1];
+            }
+            descriptionText[i].text = checkEvents.eventInScenes[i].eventDetails;
+        }
+
+    }
+<<<<<<< HEAD
+
+    public void OnshowTutorial() 
+    {
         showtutorial = true;
         PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
         tutorialPanel.SetActive(true);
@@ -117,5 +155,11 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         panel.SetActive(false);
+=======
+    IEnumerator delaysetFalseTutorialPanel()
+    {
+        yield return new WaitForSeconds(5);
+        tutorialPanel.SetActive(false);
+>>>>>>> Kiawmint
     }
 }
