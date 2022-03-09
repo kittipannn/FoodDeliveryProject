@@ -16,8 +16,9 @@ public class CinemachineControls : MonoBehaviour
     private bool startCamCinemachine = false;
     void Start()
     {
-        GameEvents.gameEvents.onStartTitleGame += cinemachineStartGame;
-        GameEvents.gameEvents.onStartTitleGame += (() => StartCoroutine(delayChangeStartCam()));
+        cinemachineStartGame();
+        StartCoroutine(delayChangeStartCam());
+        
     }
 
     // Update is called once per frame

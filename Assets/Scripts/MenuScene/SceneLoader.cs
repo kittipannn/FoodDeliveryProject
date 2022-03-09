@@ -8,7 +8,6 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject loadingScreen;
     public Slider progressSlider;
-    public Text progressText;
 
     public void LoadingScene(string sceneName)
     {
@@ -24,8 +23,7 @@ public class SceneLoader : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / .9f);
 
-            progressSlider.value = progress;
-            progressText.text = Mathf.FloorToInt(progress * 100) + " %";
+            progressSlider.value = 1 - progress;
 
             yield return null;
         }

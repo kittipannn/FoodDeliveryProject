@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
 
     [Header("TutorialPanel")]
     private bool showtutorial;
-    [SerializeField] GameObject tutorialPanel;
+    GameObject tutorialPanel;
 
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
@@ -48,11 +48,16 @@ public class UIManager : MonoBehaviour
         BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
 
+        //Tutorial
+        tutorialPanel = GameObject.FindGameObjectWithTag("TutorialPanel");
+        tutorialPanel.SetActive(false);
+
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
 
         // ทำงานเเมื่อ start Scene Tutorial
-        OnshowTutorial();
+        if (showtutorial == false)
+            OnshowTutorial();
     }
 
     
@@ -103,21 +108,14 @@ public class UIManager : MonoBehaviour
 
     public void OnshowTutorial() 
     {
-        if (!showtutorial)
-        {
-            showtutorial = true;
-            PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
-            tutorialPanel.SetActive(true);
-            StartCoroutine(delaysetFalseTutorialPanel());
-        }
-        else
-        {
-            tutorialPanel.SetActive(false);
-        }
+        showtutorial = true;
+        PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
+        tutorialPanel.SetActive(true);
+        StartCoroutine(delaysetFalseTutorialPanel(tutorialPanel));
     }
-    IEnumerator delaysetFalseTutorialPanel()
+    IEnumerator delaysetFalseTutorialPanel(GameObject panel)
     {
         yield return new WaitForSeconds(5);
-        tutorialPanel.SetActive(false);
+        panel.SetActive(false);
     }
 }

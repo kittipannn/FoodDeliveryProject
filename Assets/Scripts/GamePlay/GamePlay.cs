@@ -8,6 +8,7 @@ public class GamePlay : MonoBehaviour
     [SerializeField] private float maxBehavPlayer = 100;
     public float MaxBehavPlayer { get => maxBehavPlayer; }
     public float currentBehavPlayer;
+    GameObject Player;
 
     [Header("Time")]
     private float limitTime;
@@ -24,6 +25,8 @@ public class GamePlay : MonoBehaviour
         GameEvents.gameEvents.onGameOver += GameOver;
         //Setting
         currentBehavPlayer = PlayerPrefs.GetFloat("BehavPlayer", maxBehavPlayer);
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Player.GetComponent<SphereController>().enabled = false;
         LimitTime = setLimit;
         Time.timeScale = 0f;
     }
@@ -62,7 +65,6 @@ public class GamePlay : MonoBehaviour
     {
         Debug.Log("GameOver");
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
-        GameObject Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Player.GetComponent<SphereController>().enabled = false;
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
@@ -87,7 +89,7 @@ public class GamePlay : MonoBehaviour
         timerIsRunning = true;
         GameEvents.gameEvents.UpdateStatusPlayer();
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
-        GameObject.FindGameObjectWithTag("Player").GetComponent<SphereController>().enabled = true;
+        Player.GetComponent<SphereController>().enabled = true;
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
     }
 
