@@ -27,6 +27,7 @@ public class TestManager : MonoBehaviour
             section1Panel.SetActive(false);
         }
         setBtn();
+        
     }
     void setBtn() 
     {
