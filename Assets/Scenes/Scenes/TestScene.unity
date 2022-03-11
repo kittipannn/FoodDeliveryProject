@@ -182,8 +182,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 2"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -316,8 +317,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 3"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -450,8 +452,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 8\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -659,7 +662,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -723,7 +727,7 @@ MonoBehaviour:
   m_margin: {x: 21.492584, y: 10.74633, z: 19.957489, w: 12.281517}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &263182847
@@ -794,6 +798,7 @@ MonoBehaviour:
   m_text: "\u0E01\u0E25\u0E31\u0E1A\u0E44\u0E1B\u0E2B\u0E19\u0E49\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E02\u0E49\u0E2D\u0E2A\u0E2D\u0E1A\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1347,8 +1352,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1481,7 +1487,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E40\u0E09\u0E25\u0E22"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1545,7 +1552,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &663650083
@@ -1615,7 +1622,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1679,7 +1687,7 @@ MonoBehaviour:
   m_margin: {x: 24.562866, y: 13.816696, z: 24.56305, w: 13.816666}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &719991834
@@ -1749,7 +1757,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E17\u0E33\u0E02\u0E49\u0E2D\u0E2A\u0E2D\u0E1A\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E07\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1813,7 +1822,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &731334748
@@ -2016,8 +2025,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 5"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2541,7 +2551,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Which one is the correct answer?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2605,7 +2616,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &915027761
@@ -2808,7 +2819,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2872,7 +2884,7 @@ MonoBehaviour:
   m_margin: {x: 26.098175, y: 12.281532, z: 24.56305, w: 16.887093}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1023980517
@@ -3844,8 +3856,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3978,7 +3991,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E15\u0E48\u0E2D\u0E44\u0E1B\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4042,7 +4056,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1401554050
@@ -4187,8 +4201,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 7"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4579,8 +4594,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E41\u0E1A\u0E1A\u0E15\u0E31\u0E27\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E02\u0E49\u0E2D\u0E2A\u0E2D\u0E1A"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4951,7 +4967,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10/30
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5015,7 +5032,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1832315475
@@ -5104,8 +5121,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 6"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5626,8 +5644,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0E2B\u0E21\u0E27\u0E14 9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
+  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5760,7 +5779,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_fixThaiVowel: 1
   m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5824,7 +5844,7 @@ MonoBehaviour:
   m_margin: {x: 23.02774, y: 12.281464, z: 24.562927, w: 13.816673}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1957945741
