@@ -9,6 +9,7 @@ TagManager:
   - AreaCrossWalk
   - showtutorial
   - TutorialPanel
+  - Car
   layers:
   - Default
   - TransparentFX
