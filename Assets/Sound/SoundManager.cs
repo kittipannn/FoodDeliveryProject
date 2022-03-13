@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public AudioMixer mixer;
     public static SoundManager soundInstance;
     private bool muted = false;
-    public AudioMixer mixer;
 
-    [Header("SLider")]
-    public Slider volumeSlider;
     private void Awake()
     {
         //DontDestroyOnLoad(this.gameObject);
@@ -31,30 +28,42 @@ public class SoundManager : MonoBehaviour
             sound.source.playOnAwake = sound.playOnAwake;
             sound.source.outputAudioMixerGroup = sound.audioMixer;
         }
-        
-    }
-    private void Start()
-    {
-        volumeSlider.onValueChanged.AddListener(delegate { setVolume(volumeSlider.value); });
+
         if (!PlayerPrefs.HasKey("muted"))
         {
             PlayerPrefs.SetInt("muted", 0);
-            LoadValueSoundCOntrol();
+            LoadValueSoundControl();
         }
         else
         {
-            LoadValueSoundCOntrol();
+            LoadValueSoundControl();
         }
+    }
+    private void Start()
+    {
+
         AudioListener.pause = muted;
         Play("BGM");
     }
-    private void LoadValueSoundCOntrol() 
+
+    private void LoadValueSoundControl() 
     {
         muted = PlayerPrefs.GetInt("muted") == 1;
     }
+
     private void SaveValueSoundControl() 
     {
         PlayerPrefs.SetInt("muted", muted ? 1 : 0);
+    }
+
+    public float LoadVolumeSound(string Soundkey) 
+    {
+        float volumeLevel = PlayerPrefs.GetFloat(Soundkey, 1);
+        return volumeLevel;
+    }
+    public void SaveVolumeSound(string Soundkey, float value)
+    {
+        PlayerPrefs.SetFloat(Soundkey, value);
     }
 
     public void Play(string name)
@@ -67,9 +76,9 @@ public class SoundManager : MonoBehaviour
         }
         s.source.Play();
     }
-    public void OnButtonSoundControl()
+    public void OnSoundControl(bool mute)
     {
-        if (!muted)
+        if (!mute)
         {
             muted = true;
             AudioListener.pause = true;
@@ -82,10 +91,6 @@ public class SoundManager : MonoBehaviour
             Debug.Log("UnMute");
         }
         SaveValueSoundControl();
-    }
-    private void setVolume(float sliderValue) 
-    {
-        mixer.SetFloat("MusicVol", Mathf.Log10(sliderValue) * 20 );
     }
 }
 
