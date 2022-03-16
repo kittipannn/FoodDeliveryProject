@@ -184,7 +184,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1489,7 +1489,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1624,7 +1624,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1759,7 +1759,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3858,7 +3858,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3993,7 +3993,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4203,7 +4203,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4596,7 +4596,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4969,7 +4969,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 5240694818697880830, guid: 7c66404bcbcf1864999bb5946bae0d68, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5123,7 +5123,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5646,7 +5646,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: -2254945648162370680, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5781,7 +5781,7 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fixThaiVowel: 1
-  m_sharedMaterial: {fileID: 7866995644931429254, guid: 04852511b053fc94395028972e719053, type: 2}
+  m_sharedMaterial: {fileID: -7180987109601086211, guid: f8bf3597b41600e43956ff459d2877cf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
