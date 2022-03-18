@@ -35,22 +35,26 @@ public class CsvReader : MonoBehaviour
         QuestionsAndAnswersList QuestionsAndAnswersList;
         QuestionsAndAnswersList = QnAList(num);
 
-        string[] data = DataTextAsset[num].text.Split(new string[] { ",", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-        int tableSIze = data.Length / 7 - 1;
-        QuestionsAndAnswersList.QnA = new QuestionsAndAnswers[tableSIze];// จะใช้ให้เปลลี่ยนเป็น tableSIze
+        string[] data = DataTextAsset[num].text.Split(new char[] { '\n' });
+        int tableSIze = data.Length;
+        QuestionsAndAnswersList.QnA = new QuestionsAndAnswers[tableSIze-2];// จะใช้ให้เปลลี่ยนเป็น tableSIze
 
-        for (int i = 0; i < tableSIze; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
+        for (int i = 1; i < tableSIze - 1; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
         {
-            QuestionsAndAnswersList.QnA[i] = new QuestionsAndAnswers();
-
-            QuestionsAndAnswersList.QnA[i].Question = data[7 * (i + 1)];
-            for (int j = 0; j < 4; j++)
+            string[] row = data[i].Split(new char[] { ',' });
+            if (row[1] != "")
             {
-                QuestionsAndAnswersList.QnA[i].Answers[j] = data[7 * (i + 1) + (j + 1)];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
-            }
-            QuestionsAndAnswersList.QnA[i].ImageName = data[7 * (i + 1) + 5];
-            QuestionsAndAnswersList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
+                QuestionsAndAnswersList.QnA[i-1] = new QuestionsAndAnswers();
 
+                QuestionsAndAnswersList.QnA[i - 1].Question = row[0];
+                for (int j = 0; j < 4; j++)
+                {
+                    QuestionsAndAnswersList.QnA[i - 1].Answers[j] = row[j+1];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
+                }
+                QuestionsAndAnswersList.QnA[i - 1].ImageName = row[5];
+                QuestionsAndAnswersList.QnA[i - 1].CorrectAnswer = int.Parse(row[6]);
+
+            }
         }
 
     }
