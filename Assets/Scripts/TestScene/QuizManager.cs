@@ -30,6 +30,7 @@ public class QuizManager : MonoBehaviour
     int totalQuestions = 0;
     public int score;
     private int numOfQuestionDone = 0;
+    bool reQuiz;
     public int NumOfQuestionDone { set { numOfQuestionDone += value; } }
     [SerializeField] Button answerBtn;
     [SerializeField] Button nextBtn;
@@ -37,7 +38,8 @@ public class QuizManager : MonoBehaviour
     public Sprite defaultImage , trueImgae, falseImage;
     private void Awake()
     {
-        //CSVReader();
+        reQuiz = PlayerPrefs.GetInt("restartQuiz") == 1 ? true : false;
+        Debug.Log(reQuiz);
     }
     private void Start()
     {
@@ -46,6 +48,7 @@ public class QuizManager : MonoBehaviour
         //categoryStart.onClick.AddListener(() => OnStartTest());
         nextBtn.gameObject.SetActive(false);
         GoPanel.SetActive(false);
+        restartQuiz();
     }
     void setBtn() 
     {
@@ -64,7 +67,6 @@ public class QuizManager : MonoBehaviour
     }
     void OnStartTest(int num) 
     {
-        Debug.Log(num);
         switch (num)
         {
             case 0:
@@ -105,8 +107,19 @@ public class QuizManager : MonoBehaviour
                 break;
         }
         totalQuestions = questionAndAnswerList.QnA.Length;
+        PlayerPrefs.SetInt("currentData", numOfData);
         GenerateQuestion();
     }
+    void restartQuiz()
+    {
+
+        if (reQuiz == true)
+        {
+            int indexQuestion = PlayerPrefs.GetInt("currentData");
+            OnStartTest(indexQuestion);
+        }
+    }
+
     //void CSVReader()
     //{
     //    string[] data = DataTextAsset.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
@@ -124,13 +137,13 @@ public class QuizManager : MonoBehaviour
     //        }
     //        questionAndAnswerList.QnA[i].ImageName = data[7 * (i + 1) + 5];
     //        questionAndAnswerList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
-            
+
     //    }
 
     //}
 
 
- 
+
 
     //public void ShowAnswerPanel()
     //{

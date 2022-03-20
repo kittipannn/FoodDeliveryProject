@@ -9,37 +9,54 @@ public class TestManager : MonoBehaviour
 {
     public GameObject mainTestPanel;
     public GameObject section1Panel;
-
+    SceneLoader sceneLoader;
     [SerializeField] Button backToMenuBtn;
     [SerializeField] Button doneBtn;
     [SerializeField] Button backToMainBtn;
 
+    private void Awake()
+    {
+        sceneLoader = this.gameObject.GetComponent<SceneLoader>();
+    }
     void Start()
     {
-        mainTestPanel.SetActive(true);
-        section1Panel.SetActive(false);
+        bool reQuiz = PlayerPrefs.GetInt("restartQuiz") == 1 ? true : false;
+        if (reQuiz)
+        {
+            Section1();
+        }
+        else
+        {
+            mainTestPanel.SetActive(true);
+            section1Panel.SetActive(false);
+        }
         setBtn();
-
+        
     }
     void setBtn() 
     {
         backToMenuBtn.onClick.AddListener(() => OnBackToMenu());
-        doneBtn.onClick.AddListener(() => OnDone());
+        doneBtn.onClick.AddListener(() => OnRestartQuiz());
         backToMainBtn.onClick.AddListener(() => OnBackToMain());
     }
     void OnBackToMenu() 
     {
-        //SceneManager.LoadScene("Menu");
-        Application.Quit();
-        Debug.Log("Quit");
+        sceneLoader.LoadingScene("MenuScene");
+        PlayerPrefs.DeleteKey("currentData");
+        PlayerPrefs.DeleteKey("restartQuiz");
+
 
     }
     void OnBackToMain() 
     {
+        PlayerPrefs.DeleteKey("currentData");
+        PlayerPrefs.DeleteKey("restartQuiz");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    void OnDone() 
+    void OnRestartQuiz() 
     {
+        bool restartQuiz = true;
+        PlayerPrefs.SetInt("restartQuiz", restartQuiz ? 1 : 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Section1()
