@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
     [Header("Speedometer")]
     [SerializeField] TMP_Text speedText;
     MotorcycleControl motorcycle;
-    GameObject Player;
+    [SerializeField] GameObject Player;
 
 
     [Header("TutorialPanel")]
@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviour
     
     void Update()
     {
+
         timeText.text = displayTimer();
         speedText.text = displaySpeed(Player.GetComponent<SphereController>().PlayerSpeed);
         //if (showTimeText)

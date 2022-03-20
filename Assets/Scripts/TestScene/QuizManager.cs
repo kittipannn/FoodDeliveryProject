@@ -120,36 +120,6 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    //void CSVReader()
-    //{
-    //    string[] data = DataTextAsset.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
-    //    int tableSIze = data.Length / 7 - 1;
-    //    questionAndAnswerList.QnA = new QuestionsAndAnswers[4];// จะใช้ให้เปลลี่ยนเป็น tableSIze
-
-    //    for (int i = 0; i < 4; i++) // จะใช้ให้เปลลี่ยนเป็น tableSIze
-    //    {
-    //        questionAndAnswerList.QnA[i] = new QuestionsAndAnswers();
-
-    //        questionAndAnswerList.QnA[i].Question = data[7 * (i + 1)];
-    //        for (int j = 0; j < 4; j++)
-    //        {
-    //            questionAndAnswerList.QnA[i].Answers[j] = data[7 * (i + 1) + (j + 1)];// (j + 1) ตำแหน่งที่ 1- 4 ใน ตาราง csv
-    //        }
-    //        questionAndAnswerList.QnA[i].ImageName = data[7 * (i + 1) + 5];
-    //        questionAndAnswerList.QnA[i].CorrectAnswer = int.Parse(data[7 * (i + 1) + 6]);
-
-    //    }
-
-    //}
-
-
-
-
-    //public void ShowAnswerPanel()
-    //{
-    //    AnswersPanel.SetActive(true);
-    //}
-
     public void CloseAnsPanel()
     {
         AnswersPanel.SetActive(false);
