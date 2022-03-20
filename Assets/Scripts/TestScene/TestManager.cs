@@ -9,11 +9,15 @@ public class TestManager : MonoBehaviour
 {
     public GameObject mainTestPanel;
     public GameObject section1Panel;
-
+    SceneLoader sceneLoader;
     [SerializeField] Button backToMenuBtn;
     [SerializeField] Button doneBtn;
     [SerializeField] Button backToMainBtn;
 
+    private void Awake()
+    {
+        sceneLoader = this.gameObject.GetComponent<SceneLoader>();
+    }
     void Start()
     {
         bool reQuiz = PlayerPrefs.GetInt("restartQuiz") == 1 ? true : false;
@@ -37,11 +41,10 @@ public class TestManager : MonoBehaviour
     }
     void OnBackToMenu() 
     {
-        //SceneManager.LoadScene("Menu");
+        sceneLoader.LoadingScene("MenuScene");
         PlayerPrefs.DeleteKey("currentData");
         PlayerPrefs.DeleteKey("restartQuiz");
-        Application.Quit();
-        Debug.Log("Quit");
+
 
     }
     void OnBackToMain() 
