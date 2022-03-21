@@ -20,7 +20,8 @@ public class UIManager : MonoBehaviour
     MotorcycleControl motorcycle;
     [SerializeField] GameObject Player;
 
-
+    [Header("SettingPanel")]
+    [SerializeField] GameObject optionPanel;
 
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
@@ -34,12 +35,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image[] Turnlight;
     bool LightOn = true;
 
+    int timeCountdown = 4;
+    [SerializeField] TMP_Text countdownText;
+    [SerializeField] GameObject countdownPanel;
     void Start()
     {
         //Events
         GameEvents.gameEvents.onUpdateStatusPlayer += updateStatusPlayer;
         GameEvents.gameEvents.onStartGame += (() => showTimeText = true);
         GameEvents.gameEvents.onFinishGame += OnShowFinishPanel;
+        GameEvents.gameEvents.onCountdown += (() => InvokeRepeating("OnCountDown", 0, 1));
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
@@ -59,6 +64,11 @@ public class UIManager : MonoBehaviour
         speedText.text = displaySpeed(Player.GetComponent<SphereController>().PlayerSpeed);
         //if (showTimeText)
         //    timeText.text = displayTimer();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            OnOption();
+        }
     }
     private void updateStatusPlayer() //ลดเมื่อผู้เล่นพฤติพฤติกรรมไม่ดี
     {
@@ -66,6 +76,17 @@ public class UIManager : MonoBehaviour
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
     }
 
+    void OnOption()
+    {
+        if (!optionPanel.activeInHierarchy)
+        {
+            optionPanel.SetActive(true);
+        }
+        else
+        {
+            optionPanel.SetActive(false);
+        }
+    }
     string displayTimer()
     {
         float timer = gamePlay.LimitTime;
@@ -74,10 +95,28 @@ public class UIManager : MonoBehaviour
         string showtime = string.Format("{0:00}   {1:00}", minutes, seconds);
         return showtime;
     }
-
+    void OnCountDown() 
+    {
+        countdownPanel.SetActive(true);
+        timeCountdown--;
+        countdownText.text = timeCountdown.ToString();
+        if (timeCountdown < 1)
+        {
+            countdownText.text = "Start";
+            StartCoroutine(delayCountdown());
+        }
+    }
+    IEnumerator delayCountdown() 
+    {
+        yield return new WaitForSeconds(0.5f);
+        CancelInvoke("OnCountDown");
+        countdownPanel.SetActive(false);
+        Debug.Log("Start Game");
+        GameEvents.gameEvents.startGame();
+    }
     string displaySpeed(float speedPlayer) 
     {
-        int speed = Mathf.RoundToInt(speedPlayer) / 10; 
+        int speed = Mathf.RoundToInt(speedPlayer);
         return speed.ToString();
     }
     private void OnShowFinishPanel() 
@@ -98,21 +137,19 @@ public class UIManager : MonoBehaviour
 
     }
 
-
-  
     public void changeImgTurnlight(int i)
     {
         if (i == 1) // left
         {
-            Turnlight[1].sprite = ImgTurnlight[1];
+            Turnlight[1].sprite = ImgTurnlight[2];
             if (LightOn)
             {
-                Turnlight[0].sprite = ImgTurnlight[2];
+                Turnlight[0].sprite = ImgTurnlight[0];
                 LightOn = false;
             }
             else
             {
-                Turnlight[0].sprite = ImgTurnlight[3];
+                Turnlight[0].sprite = ImgTurnlight[1];
                 LightOn = true;
             }
         }
@@ -121,12 +158,12 @@ public class UIManager : MonoBehaviour
             Turnlight[0].sprite = ImgTurnlight[0];
             if (LightOn)
             {
-                Turnlight[1].sprite = ImgTurnlight[4];
+                Turnlight[1].sprite = ImgTurnlight[2];
                 LightOn = false;
             }
             else
             {
-                Turnlight[1].sprite = ImgTurnlight[5];
+                Turnlight[1].sprite = ImgTurnlight[3];
                 LightOn = true;
             }
         }
@@ -134,7 +171,7 @@ public class UIManager : MonoBehaviour
         {
             LightOn = false;
             Turnlight[0].sprite = ImgTurnlight[0];
-            Turnlight[1].sprite = ImgTurnlight[1];
+            Turnlight[1].sprite = ImgTurnlight[2];
             
         }
     }

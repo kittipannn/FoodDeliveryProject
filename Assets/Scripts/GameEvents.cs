@@ -10,6 +10,7 @@ public class GameEvents : MonoBehaviour
     {
         gameEvents = this;
     }
+
     public event Action<float> onDecreaseBehavPlayer;
     public void decreaseBehavPlayer(float value)
     {
@@ -18,6 +19,7 @@ public class GameEvents : MonoBehaviour
             onDecreaseBehavPlayer(value);
         }
     }
+
     public event Action<float> onIncreaseBehavPlayer; //เผื่อต้องการเพิ่มค่าความประพฤติ
     public void increaseBehavPlayer(float value)
     {
@@ -27,14 +29,6 @@ public class GameEvents : MonoBehaviour
         }
     }
 
-    public event Action onStartTitleGame; // เมื่อเริ่มเกม
-    public void startGameBtn()
-    {
-        if (onStartTitleGame != null)
-        {
-            onStartTitleGame();
-        }
-    }
     public event Action<int> oncheckEvents; //checkevent in scenes
     public void checkEvents(int valus) 
     {
@@ -43,6 +37,7 @@ public class GameEvents : MonoBehaviour
             oncheckEvents(valus);
         }
     }
+
     public event Action onStartGame; // เมื่อเริ่มเกม
     public void startGame()
     {
@@ -51,6 +46,7 @@ public class GameEvents : MonoBehaviour
             onStartGame();
         }
     }
+
     public event Action onFinishGame; // when player moves to finishPoint
     public void finishGame() 
     {
@@ -59,6 +55,7 @@ public class GameEvents : MonoBehaviour
             onFinishGame();
         }
     }
+
     public event Action onGameOver;
     public void gameOver()
     {
@@ -67,6 +64,7 @@ public class GameEvents : MonoBehaviour
             onGameOver();
         }
     }
+
 
     public event Action onCrosswalkTrigger;
     public void CrossWalkTrigger()
@@ -86,4 +84,12 @@ public class GameEvents : MonoBehaviour
         }
     }
 
+    public event Action onCountdown; // countdown when start game
+    public void Countdown()
+    {
+        if (onCountdown != null)
+        {
+            onCountdown();
+        }
+    }
 }

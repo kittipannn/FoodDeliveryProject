@@ -16,7 +16,9 @@ public class crossWalkTrigger : MonoBehaviour
             {
                 item.enabled = true;
             }
+            this.gameObject.SetActive(false);
         }
+
     }
     public int GetNumberOfPeople()
     {

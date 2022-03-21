@@ -8,8 +8,9 @@ public class DestinationPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            GameObject Player = GameObject.FindGameObjectWithTag("Player");
+            Player.GetComponent<SphereController>().enabled = false;
             GameEvents.gameEvents.finishGame();
-            //GameObject.FindObjectOfType<UIManager>().OnshowTutorial();
         }
     }
 }
