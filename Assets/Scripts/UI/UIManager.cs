@@ -21,9 +21,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject Player;
 
 
-    [Header("TutorialPanel")]
-    private bool showtutorial;
-    GameObject tutorialPanel;
 
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
@@ -32,10 +29,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<Sprite> symbol;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
 
-    private void Awake()
-    {
-        showtutorial = PlayerPrefs.GetInt("ShowTutorial") == 1 ? true : false;
-    }
+    [Header("TurnLight")]
+    [SerializeField] Sprite[] ImgTurnlight;
+    [SerializeField] Image[] Turnlight;
+    bool LightOn = true;
+
     void Start()
     {
         //Events
@@ -48,16 +46,9 @@ public class UIManager : MonoBehaviour
         BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
 
-        //Tutorial
-        tutorialPanel = GameObject.FindGameObjectWithTag("TutorialPanel");
-        tutorialPanel.SetActive(false);
 
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
-
-        // ทำงานเเมื่อ start Scene Tutorial
-        if (showtutorial == false)
-            OnshowTutorial();
     }
 
     
@@ -107,16 +98,44 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void OnshowTutorial() 
+
+  
+    public void changeImgTurnlight(int i)
     {
-        showtutorial = true;
-        PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
-        tutorialPanel.SetActive(true);
-        StartCoroutine(delaysetFalseTutorialPanel(tutorialPanel));
-    }
-    IEnumerator delaysetFalseTutorialPanel(GameObject panel)
-    {
-        yield return new WaitForSeconds(5);
-        panel.SetActive(false);
+        if (i == 1) // left
+        {
+            Turnlight[1].sprite = ImgTurnlight[1];
+            if (LightOn)
+            {
+                Turnlight[0].sprite = ImgTurnlight[2];
+                LightOn = false;
+            }
+            else
+            {
+                Turnlight[0].sprite = ImgTurnlight[3];
+                LightOn = true;
+            }
+        }
+        else if (i == 2)// right
+        {
+            Turnlight[0].sprite = ImgTurnlight[0];
+            if (LightOn)
+            {
+                Turnlight[1].sprite = ImgTurnlight[4];
+                LightOn = false;
+            }
+            else
+            {
+                Turnlight[1].sprite = ImgTurnlight[5];
+                LightOn = true;
+            }
+        }
+        else
+        {
+            LightOn = false;
+            Turnlight[0].sprite = ImgTurnlight[0];
+            Turnlight[1].sprite = ImgTurnlight[1];
+            
+        }
     }
 }

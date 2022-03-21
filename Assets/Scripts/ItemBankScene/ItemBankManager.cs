@@ -88,6 +88,7 @@ public class ItemBankManager : MonoBehaviour
     {
         section = Section;
         numberOfImage = NumOfImage;
+        checkFirstAndLastImage();
         setActivePanel();
         OnTextPage();
         OnImageLoader();
