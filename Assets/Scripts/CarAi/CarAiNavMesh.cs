@@ -18,18 +18,18 @@ public class CarAiNavMesh : MonoBehaviour
     }
     private void Update()
     {
-        WheelSpinning();
+        //WheelSpinning();
     }
     public void AiMove()
     {
         navMeshAgent.destination = target.position;
     }
 
-    public void WheelSpinning()
-    {
-        FLWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
-        FRWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
-        RLWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
-        RRWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
-    }
+    //public void WheelSpinning()
+    //{
+    //    FLWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
+    //    FRWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
+    //    RLWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
+    //    RRWheel.transform.Rotate(wheelSpinningSpeed * Time.deltaTime, 0f, 0f, Space.Self);
+    //}
 }

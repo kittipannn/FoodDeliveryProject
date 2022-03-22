@@ -81,10 +81,12 @@ public class UIManager : MonoBehaviour
         if (!optionPanel.activeInHierarchy)
         {
             optionPanel.SetActive(true);
+            Time.timeScale = 0;
         }
         else
         {
             optionPanel.SetActive(false);
+            Time.timeScale = 1;
         }
     }
     string displayTimer()
@@ -95,7 +97,7 @@ public class UIManager : MonoBehaviour
         string showtime = string.Format("{0:00}   {1:00}", minutes, seconds);
         return showtime;
     }
-    void OnCountDown() 
+    void OnCountDown()  // invoke ใน Countdown Event
     {
         countdownPanel.SetActive(true);
         timeCountdown--;
