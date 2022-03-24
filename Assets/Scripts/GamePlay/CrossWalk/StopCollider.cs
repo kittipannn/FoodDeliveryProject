@@ -30,7 +30,7 @@ public class StopCollider : MonoBehaviour
         {
             if (crossWalkScriptList.Count == numOfPeople)
             {
-                //GameObject.FindObjectOfType<CrossWalkCollider>().gameObject.SetActive(false);
+                GameObject.FindObjectOfType<CrossWalkCollider>().gameObject.SetActive(false);
                 this.enabled = false;
             }
         }

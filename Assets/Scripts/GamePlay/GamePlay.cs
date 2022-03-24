@@ -17,6 +17,10 @@ public class GamePlay : MonoBehaviour
     public float setLimit; // ไว้ test สำหรับ ดูว่าถ้าเอาไปใส่ที่อื่นจะได้ไหม
     private bool timerIsRunning = false;
 
+    private void Awake()
+    {
+        currentBehavPlayer = PlayerPrefs.GetFloat("BehavPlayer", maxBehavPlayer);
+    }
     void Start()
     {
         //Events
@@ -24,11 +28,10 @@ public class GamePlay : MonoBehaviour
         GameEvents.gameEvents.onStartGame += playerStartGame;
         GameEvents.gameEvents.onGameOver += GameOver;
         //Setting
-        currentBehavPlayer = PlayerPrefs.GetFloat("BehavPlayer", maxBehavPlayer);
+        
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<SphereController>().enabled = false;
         LimitTime = setLimit;
-        Time.timeScale = 0f;
     }
     private void Update()
     {
@@ -58,8 +61,6 @@ public class GamePlay : MonoBehaviour
         PlayerPrefs.SetFloat("BehavPlayer", currentBehavPlayer);
         PlayerPrefs.Save();
     }
-
-
     //gameOver
     private void GameOver() 
     {
@@ -87,6 +88,7 @@ public class GamePlay : MonoBehaviour
     private void playerStartGame()
     {
         timerIsRunning = true;
+        
         GameEvents.gameEvents.UpdateStatusPlayer();
         //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
         Player.GetComponent<SphereController>().enabled = true;

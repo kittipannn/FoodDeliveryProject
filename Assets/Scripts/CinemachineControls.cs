@@ -10,7 +10,6 @@ public class CinemachineControls : MonoBehaviour
 
 
     [SerializeField] GameObject birdEyeCam;
-    [SerializeField] GameObject playerCam;
     [SerializeField] float timeSwitchCam;
 
     private bool startCamCinemachine = false;
@@ -31,8 +30,7 @@ public class CinemachineControls : MonoBehaviour
             if (!birdEyeLive)
             {
                 startCamCinemachine = false;
-                Debug.Log("Start Game");
-                GameEvents.gameEvents.startGame();
+                GameEvents.gameEvents.Countdown();
             }
         }
     }

@@ -18,12 +18,10 @@ public class UIManager : MonoBehaviour
     [Header("Speedometer")]
     [SerializeField] TMP_Text speedText;
     MotorcycleControl motorcycle;
-    GameObject Player;
+    [SerializeField] GameObject Player;
 
-
-    [Header("TutorialPanel")]
-    private bool showtutorial;
-    GameObject tutorialPanel;
+    [Header("SettingPanel")]
+    [SerializeField] GameObject optionPanel;
 
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
@@ -32,41 +30,45 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<Sprite> symbol;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
 
-    private void Awake()
-    {
-        showtutorial = PlayerPrefs.GetInt("ShowTutorial") == 1 ? true : false;
-    }
+    [Header("TurnLight")]
+    [SerializeField] Sprite[] ImgTurnlight;
+    [SerializeField] Image[] Turnlight;
+    bool LightOn = true;
+
+    int timeCountdown = 4;
+    [SerializeField] TMP_Text countdownText;
+    [SerializeField] GameObject countdownPanel;
     void Start()
     {
         //Events
         GameEvents.gameEvents.onUpdateStatusPlayer += updateStatusPlayer;
         GameEvents.gameEvents.onStartGame += (() => showTimeText = true);
         GameEvents.gameEvents.onFinishGame += OnShowFinishPanel;
+        GameEvents.gameEvents.onCountdown += (() => InvokeRepeating("OnCountDown", 0, 1));
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
         BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
 
-        //Tutorial
-        tutorialPanel = GameObject.FindGameObjectWithTag("TutorialPanel");
-        tutorialPanel.SetActive(false);
 
         //motorcycle = GameObject.FindGameObjectWithTag("Player").GetComponent<MotorcycleControl>();
         Player = GameObject.FindGameObjectWithTag("Player");
-
-        // ทำงานเเมื่อ start Scene Tutorial
-        if (showtutorial == false)
-            OnshowTutorial();
     }
 
     
     void Update()
     {
+
         timeText.text = displayTimer();
         speedText.text = displaySpeed(Player.GetComponent<SphereController>().PlayerSpeed);
         //if (showTimeText)
         //    timeText.text = displayTimer();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            OnOption();
+        }
     }
     private void updateStatusPlayer() //ลดเมื่อผู้เล่นพฤติพฤติกรรมไม่ดี
     {
@@ -74,6 +76,19 @@ public class UIManager : MonoBehaviour
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
     }
 
+    void OnOption()
+    {
+        if (!optionPanel.activeInHierarchy)
+        {
+            optionPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            optionPanel.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
     string displayTimer()
     {
         float timer = gamePlay.LimitTime;
@@ -82,10 +97,28 @@ public class UIManager : MonoBehaviour
         string showtime = string.Format("{0:00}   {1:00}", minutes, seconds);
         return showtime;
     }
-
+    void OnCountDown()  // invoke ใน Countdown Event
+    {
+        countdownPanel.SetActive(true);
+        timeCountdown--;
+        countdownText.text = timeCountdown.ToString();
+        if (timeCountdown < 1)
+        {
+            countdownText.text = "Start";
+            StartCoroutine(delayCountdown());
+        }
+    }
+    IEnumerator delayCountdown() 
+    {
+        yield return new WaitForSeconds(0.5f);
+        CancelInvoke("OnCountDown");
+        countdownPanel.SetActive(false);
+        Debug.Log("Start Game");
+        GameEvents.gameEvents.startGame();
+    }
     string displaySpeed(float speedPlayer) 
     {
-        int speed = Mathf.RoundToInt(speedPlayer) / 10; 
+        int speed = Mathf.RoundToInt(speedPlayer);
         return speed.ToString();
     }
     private void OnShowFinishPanel() 
@@ -106,16 +139,42 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void OnshowTutorial() 
+    public void changeImgTurnlight(int i)
     {
-        showtutorial = true;
-        PlayerPrefs.SetInt("ShowTutorial", showtutorial ? 1 : 0);
-        tutorialPanel.SetActive(true);
-        StartCoroutine(delaysetFalseTutorialPanel(tutorialPanel));
-    }
-    IEnumerator delaysetFalseTutorialPanel(GameObject panel)
-    {
-        yield return new WaitForSeconds(5);
-        panel.SetActive(false);
+        if (i == 1) // left
+        {
+            Turnlight[1].sprite = ImgTurnlight[2];
+            if (LightOn)
+            {
+                Turnlight[0].sprite = ImgTurnlight[0];
+                LightOn = false;
+            }
+            else
+            {
+                Turnlight[0].sprite = ImgTurnlight[1];
+                LightOn = true;
+            }
+        }
+        else if (i == 2)// right
+        {
+            Turnlight[0].sprite = ImgTurnlight[0];
+            if (LightOn)
+            {
+                Turnlight[1].sprite = ImgTurnlight[2];
+                LightOn = false;
+            }
+            else
+            {
+                Turnlight[1].sprite = ImgTurnlight[3];
+                LightOn = true;
+            }
+        }
+        else
+        {
+            LightOn = false;
+            Turnlight[0].sprite = ImgTurnlight[0];
+            Turnlight[1].sprite = ImgTurnlight[2];
+            
+        }
     }
 }
