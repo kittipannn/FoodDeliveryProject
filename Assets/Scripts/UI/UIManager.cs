@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     [Header("SettingPanel")]
     [SerializeField] GameObject optionPanel;
 
+    [Header("GameOverPanel")]
+    [SerializeField] GameObject gameOverPanel;
+
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
     [SerializeField] GameObject finishPanel;
@@ -45,10 +48,11 @@ public class UIManager : MonoBehaviour
         GameEvents.gameEvents.onStartGame += (() => showTimeText = true);
         GameEvents.gameEvents.onFinishGame += OnShowFinishPanel;
         GameEvents.gameEvents.onCountdown += (() => InvokeRepeating("OnCountDown", 0, 1));
+        GameEvents.gameEvents.onGameOver += OnGameOverPanel;
 
         //Setting
         BehavSlider.maxValue = gamePlay.MaxBehavPlayer;
-        BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
+        BehavSlider.value = BehavSlider.maxValue - gamePlay.currentBehavPlayer;
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
 
 
@@ -72,7 +76,7 @@ public class UIManager : MonoBehaviour
     }
     private void updateStatusPlayer() //ลดเมื่อผู้เล่นพฤติพฤติกรรมไม่ดี
     {
-        BehavSlider.value = 100 - gamePlay.currentBehavPlayer;
+        BehavSlider.value = BehavSlider.maxValue - gamePlay.currentBehavPlayer;
         //BehavSlider.value =  gamePlay.currentBehavPlayer;
     }
 
@@ -138,7 +142,10 @@ public class UIManager : MonoBehaviour
         }
 
     }
-
+    void OnGameOverPanel() 
+    {
+        gameOverPanel.SetActive(true);
+    }
     public void changeImgTurnlight(int i)
     {
         if (i == 1) // left

@@ -4,10 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 public class OnButtonManager : MonoBehaviour
 {
-    [SerializeField] Button startGame;
+    [SerializeField] GamePlay gamePlay;
+
+    [SerializeField] Button restart;
+    [SerializeField] Button BacktoMainMenu;
+    
     private void Start()
     {
-        //startGame.onClick.AddListener(() => GameEvents.gameEvents.startGameBtn());
-        //startGame.onClick.AddListener(() => startGame.interactable = false);
+        restart.onClick.AddListener(Onrestart);
+        BacktoMainMenu.onClick.AddListener(OnBacnkToMainMenu);
+    }
+    void Onrestart() 
+    {
+        gamePlay.restartGame();
+    }
+    void OnBacnkToMainMenu()
+    {
+        gamePlay.backToMain();
     }
 }
