@@ -10,7 +10,6 @@ public class CarAiTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Car.gameObject.GetComponent<CarAiNavMesh>().AiMove();
-            Car.gameObject.GetComponent<CarAiNavMesh>().AiMove();
             Debug.Log("Trigger Start");
         }
     }

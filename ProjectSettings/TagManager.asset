@@ -10,6 +10,7 @@ TagManager:
   - showtutorial
   - TutorialPanel
   - Car
+  - AiStopTrigger
   layers:
   - Default
   - TransparentFX
