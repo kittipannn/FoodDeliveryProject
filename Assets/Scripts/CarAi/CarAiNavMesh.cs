@@ -50,6 +50,7 @@ public class CarAiNavMesh : MonoBehaviour
         if (other == stopTrigger)
         {
             Debug.Log("Stop");
+            isMoving = false;
             StartCoroutine(AiStop());
             other.gameObject.SetActive(false);
         }
@@ -60,5 +61,6 @@ public class CarAiNavMesh : MonoBehaviour
         navMeshAgent.speed = 0f;
         yield return new WaitForSeconds(stopSecond);
         navMeshAgent.speed = 3.5f;
+        isMoving = true;
     }
 }
