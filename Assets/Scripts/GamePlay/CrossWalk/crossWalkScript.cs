@@ -36,7 +36,8 @@ public class crossWalkScript : MonoBehaviour
     {
         if (crosswalk)
         {
-            rb.velocity = Vector3.right * speed;
+            //rb.velocity = Vector3.right * speed;
+            rb.AddRelativeForce(Vector3.right * speed);
         }
     }
     private void OnTriggerEnter(Collider other)
