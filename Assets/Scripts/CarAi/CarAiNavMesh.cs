@@ -54,6 +54,8 @@ public class CarAiNavMesh : MonoBehaviour
             StartCoroutine(AiStop());
             other.gameObject.SetActive(false);
         }
+
+
     }
 
     IEnumerator AiStop()
