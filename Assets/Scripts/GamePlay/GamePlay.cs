@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GamePlay : MonoBehaviour
 {
+    [SerializeField] CheckEvents checkEvents;
+    SceneLoader sceneLoader;
     [Header("Status Player")]
-    [SerializeField] private float maxBehavPlayer = 100;
+    [SerializeField] private float maxBehavPlayer;
     public float MaxBehavPlayer { get => maxBehavPlayer; }
     public float currentBehavPlayer;
     GameObject Player;
@@ -19,7 +21,10 @@ public class GamePlay : MonoBehaviour
 
     private void Awake()
     {
-        currentBehavPlayer = PlayerPrefs.GetFloat("BehavPlayer", maxBehavPlayer);
+        maxBehavPlayer = checkEvents.eventInScenes.Count;
+        //currentBehavPlayer = PlayerPrefs.GetFloat("BehavPlayer", maxBehavPlayer);
+        currentBehavPlayer = maxBehavPlayer;
+        sceneLoader = gameObject.GetComponent<SceneLoader>();
     }
     void Start()
     {
@@ -42,7 +47,7 @@ public class GamePlay : MonoBehaviour
     private void decreaseBehav(float decreaseValue)
     {
         currentBehavPlayer -= decreaseValue;
-        setPlayerPrefsBehavStatus();
+        //setPlayerPrefsBehavStatus();
         GameEvents.gameEvents.UpdateStatusPlayer();
         if (currentBehavPlayer <= 0)
         {
@@ -53,23 +58,31 @@ public class GamePlay : MonoBehaviour
     private void increaseBehav(float increaseValue) //ทำไว้เผื่อต้องการทำระบบที่สามารถเพิ่มค่าประพฤติได้
     {
         currentBehavPlayer += increaseValue;
-        setPlayerPrefsBehavStatus();
+        //setPlayerPrefsBehavStatus();
         GameEvents.gameEvents.UpdateStatusPlayer();
     }
-    private void setPlayerPrefsBehavStatus() 
-    {
-        PlayerPrefs.SetFloat("BehavPlayer", currentBehavPlayer);
-        PlayerPrefs.Save();
-    }
+    //private void setPlayerPrefsBehavStatus()
+    //{
+    //    PlayerPrefs.SetFloat("BehavPlayer", currentBehavPlayer);
+    //    PlayerPrefs.Save();
+    //}
     //gameOver
     private void GameOver() 
     {
         Debug.Log("GameOver");
-        //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
-        Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Player.GetComponent<SphereController>().enabled = false;
-        //-------------------------------------------------------------------------------------- Test -----------------------------------------------------------------------------------------------
+        currentBehavPlayer = maxBehavPlayer;
+        //setPlayerPrefsBehavStatus();
 
+    }
+    public void restartGame() // set Behav when restartgame
+    {
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        sceneLoader.LoadingScene(sceneName);
+    }
+    public void backToMain() 
+    {
+        sceneLoader.LoadingScene("MenuScene");
     }
     //TIme In Game
     private void countTime() 
@@ -78,7 +91,7 @@ public class GamePlay : MonoBehaviour
         {
             limitTime = 0;
             timerIsRunning = false;
-            Debug.Log("Game Over");
+            GameEvents.gameEvents.gameOver();
         }
         else
         {

@@ -5,15 +5,26 @@ using System.IO.Ports;
 
 public class ArduinoHand : MonoBehaviour
 {
+
+    public static ArduinoHand arduino;
     [Header("ArduinoValue")]
     SerialPort stream;
     [SerializeField] string port; //Change port 
 
     string AllvalueFromArdu;
-    string valueFromArduSpeed;
-    string valueFromArduSteering;
-    string valueFromArduturningLight;
-    string valueFromArduBrake;
+    string[] value;
+    string valueFromArduBrake; //1
+    public int brakeArduino { get => int.Parse(valueFromArduBrake);}
+    string valueFromArduSpeed; //2
+    public float speedArduino { get => float.Parse(valueFromArduSpeed); }
+    string valueFromArduSteering; //3
+    public float steerArduino { get => float.Parse(valueFromArduSteering); }
+    string valueFromArduturningLight; //4
+    public int turnlightArduino { get => int.Parse(valueFromArduturningLight); }
+    private void Awake()
+    {
+        arduino = this;
+    }
     void Start()
     {
         foreach (string mysps in SerialPort.GetPortNames())
@@ -35,14 +46,18 @@ public class ArduinoHand : MonoBehaviour
 
     void Update()
     {
+
         try
         {
             //Value from Arduino = Steer,Speed,Break,Turn signal
 
             //--- Speed ---
             AllvalueFromArdu = stream.ReadLine();
-            valueFromArduSpeed = AllvalueFromArdu;
-            //valueFromArduSteering = vec3[0];
+            value = AllvalueFromArdu.Split(new char[] { ',' });
+            valueFromArduBrake = value[0];
+            valueFromArduSpeed = value[1];
+            valueFromArduSteering = value[2];
+            valueFromArduturningLight = value[3];
             //valueFromArduGas = vec3[1];
             //valueFromArduBrake = vec3[2];
             //valueFromArduSteering = stream.ReadLine();

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public playerSetting PlayerSetting;
+
     [System.Serializable]
     public class playerSetting
     {
@@ -43,20 +44,12 @@ public class SphereController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            valueTurnlight = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            valueTurnlight = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            valueTurnlight = 2;
-        }
+        valueTurnlight = ArduinoHand.arduino.turnlightArduino;
+        Debug.Log(valueTurnlight);
         TurnlightSystem(valueTurnlight);
-        inputKeyboard();
+
+        //inputKeyboard();
+        inputArduino();
     }
     void inputHand()
     {
@@ -98,7 +91,34 @@ public class SphereController : MonoBehaviour
             speedInput = 0f;
         }
         turnInput = Input.GetAxis("Horizontal");
+        Debug.Log(turnInput);
+        Debug.Log(ArduinoHand.arduino.steerArduino/10);
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
+        /*Debug.Log(steerAndWheel.localRotation);*/ // ใช้ y z
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+        transform.position = rb.transform.position;
+    }
+    void inputArduino()
+    {
+        speedInput = 0f;
+        if (Input.GetAxis("Vertical") > 0)
+        {
+            speedInput = Input.GetAxis("Vertical") * forwardAccel * 100f;
+            playerSpeed = rb.velocity.magnitude;
+        }
+        else if (Input.GetAxis("Vertical") < 0)
+        {
+            speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
+        }
+        else if (Input.GetAxis("Vertical") == 0)
+        {
+            playerSpeed = 0f;
+            speedInput = 0f;
+        }
+        turnInput = ArduinoHand.arduino.steerArduino / 10;
+
+        steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
+        /*Debug.Log(steerAndWheel.localRotation);*/ // ใช้ y z
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
         transform.position = rb.transform.position;
     }

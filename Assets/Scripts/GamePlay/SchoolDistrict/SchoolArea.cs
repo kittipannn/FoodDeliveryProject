@@ -14,6 +14,7 @@ public class SchoolArea : MonoBehaviour
     public int NumOfEvent;
     bool enableEvent = false;
 
+    bool checkEvent = false;
     void Start()
     {
         schoolArea = gameObject.GetComponentInChildren<SchoolAreaCollider>();
@@ -29,14 +30,16 @@ public class SchoolArea : MonoBehaviour
        
         if (schoolArea.GetPlayer() != null)
         {
-            if (schoolArea.GetPlayer().velocity.magnitude > limitedSpeedInSchoolArea)
+            if (schoolArea.GetPlayer().velocity.magnitude > limitedSpeedInSchoolArea && !checkEvent)
             {
-                time += Time.deltaTime;
-                if (time >= decreaseTime)
-                {
-                    time = 0;
-                    GameEvents.gameEvents.decreaseBehavPlayer(decreaseValue);
-                }
+                GameEvents.gameEvents.decreaseBehavPlayer(decreaseValue);
+                checkEvent = true;
+                //time += Time.deltaTime;
+                //if (time >= decreaseTime)
+                //{
+                //    time = 0;
+                //    GameEvents.gameEvents.decreaseBehavPlayer(decreaseValue);
+                //}
                 if (!enableEvent)
                 {
                     enableEvent = true;

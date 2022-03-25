@@ -6,6 +6,7 @@ public class CrossWalkCollider : MonoBehaviour
 {
     public SettingValue settingValue;
     public int NumOfEvent;
+    bool checkEvent = false;
     private void Start()
     {
         this.enabled = false;
@@ -17,9 +18,10 @@ public class CrossWalkCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !checkEvent)
         {
             Debug.Log("Please stop at the crosswalk");
+            checkEvent = true;
             float valueToDecrease = settingValue.decreaseValueCrossWalk;
             GameEvents.gameEvents.decreaseBehavPlayer(valueToDecrease);
             GameEvents.gameEvents.checkEvents(NumOfEvent);
