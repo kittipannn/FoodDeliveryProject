@@ -22,8 +22,10 @@ public class SphereController : MonoBehaviour
     private bool playerBreak;
     public Rigidbody rb;
     public float forwardAccel = 3f;
+    private float currentForwardAccel =0;
     public float reverseAccel = 2f;
     public float turnStrength = 180f;
+    public float forward;
     //public float gravityForce = 10f;
     //Steer
     private float speedInput;
@@ -91,8 +93,6 @@ public class SphereController : MonoBehaviour
             speedInput = 0f;
         }
         turnInput = Input.GetAxis("Horizontal");
-        Debug.Log(turnInput);
-        Debug.Log(ArduinoHand.arduino.steerArduino/10);
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
         /*Debug.Log(steerAndWheel.localRotation);*/ // ใช้ y z
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
@@ -101,25 +101,41 @@ public class SphereController : MonoBehaviour
     void inputArduino()
     {
         speedInput = 0f;
-        if (Input.GetAxis("Vertical") > 0)
+        forwardAccel = ArduinoHand.arduino.speedArduino;
+        
+        if (forwardAccel >= currentForwardAccel)
         {
-            speedInput = Input.GetAxis("Vertical") * forwardAccel * 100f;
-            playerSpeed = rb.velocity.magnitude;
+            currentForwardAccel = forwardAccel;
+            Debug.Log(currentForwardAccel);
+            speedInput = forwardAccel * 40;
+            forward = ArduinoHand.arduino.speedArduino / 100;
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else
         {
-            speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
+            currentForwardAccel -= 5;
+            speedInput = currentForwardAccel * reverseAccel;;
+            forward = forward - 0.01f;
+            if (forward <= 0 )
+            {
+                forward = 0;
+            }
         }
-        else if (Input.GetAxis("Vertical") == 0)
-        {
-            playerSpeed = 0f;
-            speedInput = 0f;
-        }
+        playerSpeed = rb.velocity.magnitude;
+        //else if (Input.GetAxis("Vertical") < 0)
+        //{
+        //    speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
+        //}
+        //else if (Input.GetAxis("Vertical") == 0)
+        //{
+        //    playerSpeed = 0f;
+        //    speedInput = 0f;
+        //}
         turnInput = ArduinoHand.arduino.steerArduino / 10;
 
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
         /*Debug.Log(steerAndWheel.localRotation);*/ // ใช้ y z
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+        
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * forward, 0f));
         transform.position = rb.transform.position;
     }
     private void FixedUpdate()

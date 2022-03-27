@@ -104,7 +104,7 @@ namespace SAP2D {
 
         private void FixedUpdate()
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * Input.GetAxis("Vertical")));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * playerMkRot.forward));
         }
 
         private IEnumerator FindPath()
