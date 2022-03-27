@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
 
     [Header("GameOverPanel")]
     [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject OverImage;
+    [SerializeField] GameObject timeOutImage;
 
     [Header("FinishPanel")]
     [SerializeField] CheckEvents checkEvents;
@@ -69,7 +71,7 @@ public class UIManager : MonoBehaviour
         //if (showTimeText)
         //    timeText.text = displayTimer();
 
-        if (Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOverPanel.activeInHierarchy) 
         {
             OnOption();
         }
@@ -145,6 +147,13 @@ public class UIManager : MonoBehaviour
     void OnGameOverPanel() 
     {
         gameOverPanel.SetActive(true);
+        if (gamePlay.LimitTime < 0)
+        {
+            timeOutImage.SetActive(true);
+            OverImage.SetActive(false);
+        }
+        else
+            OverImage.SetActive(true);
     }
     public void changeImgTurnlight(int i)
     {
