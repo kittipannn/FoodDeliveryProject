@@ -5,7 +5,7 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     public playerSetting PlayerSetting;
-
+    bool connectedArduino;
     [System.Serializable]
     public class playerSetting
     {
@@ -16,7 +16,7 @@ public class SphereController : MonoBehaviour
     [Header("PlayerValue")]
     //Speed
     private float playerSpeed;
-    public float PlayerSpeed { get => playerSpeed; }
+    public float PlayerSpeed { get => playerSpeed * 10; }
     private bool move;
     //Break
     private bool playerBreak;
@@ -41,39 +41,27 @@ public class SphereController : MonoBehaviour
     {
         rb.transform.parent = null;
         playerSpeed = 0;
+        connectedArduino = ArduinoHand.arduino.Connected;
     }
 
 
     void Update()
     {
-        valueTurnlight = ArduinoHand.arduino.turnlightArduino;
-        Debug.Log(valueTurnlight);
         TurnlightSystem(valueTurnlight);
-
-        //inputKeyboard();
-        inputArduino();
+        inputSystem();
     }
-    void inputHand()
+    void inputSystem() 
     {
-        speedInput = 0f;
-
-       if (playerSpeed >= PlayerSetting.minSpeedValue)
-       {
-            speedInput = playerSpeed * 10f;
-       }
-        else if (Input.GetAxis("Vertical") == 0)
+        switch (connectedArduino)
         {
-            playerSpeed = 0f;
-            speedInput = 0f;
+            case true:
+                inputArduino();
+                inputKeyboard();
+                break;
+            case false:
+                inputKeyboard();
+                break;
         }
-
-        turnInput = Input.GetAxis("Horizontal");
-
-        steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
-
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
-
-        transform.position = rb.transform.position;
     }
     void inputKeyboard() 
     {
@@ -102,34 +90,20 @@ public class SphereController : MonoBehaviour
     {
         speedInput = 0f;
         forwardAccel = ArduinoHand.arduino.speedArduino;
-        
+        valueTurnlight = ArduinoHand.arduino.turnlightArduino;
+        int test = 0;
+        playerBreak = test == 0 ? true : false ;
         if (forwardAccel >= currentForwardAccel)
         {
             currentForwardAccel = forwardAccel;
-            Debug.Log(currentForwardAccel);
             speedInput = forwardAccel * 40;
             forward = ArduinoHand.arduino.speedArduino / 100;
         }
         else
         {
-            currentForwardAccel -= 5;
-            speedInput = currentForwardAccel * reverseAccel;;
-            forward = forward - 0.01f;
-            if (forward <= 0 )
-            {
-                forward = 0;
-            }
+            brake();
         }
         playerSpeed = rb.velocity.magnitude;
-        //else if (Input.GetAxis("Vertical") < 0)
-        //{
-        //    speedInput = Input.GetAxis("Vertical") * reverseAccel * 100f;
-        //}
-        //else if (Input.GetAxis("Vertical") == 0)
-        //{
-        //    playerSpeed = 0f;
-        //    speedInput = 0f;
-        //}
         turnInput = ArduinoHand.arduino.steerArduino / 10;
 
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
@@ -137,6 +111,23 @@ public class SphereController : MonoBehaviour
         
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * forward, 0f));
         transform.position = rb.transform.position;
+    }
+    void brake() 
+    {
+        if (playerBreak)
+        {
+            currentForwardAccel -= 10 * Time.deltaTime;
+            speedInput = currentForwardAccel * reverseAccel; ;
+            if (forward > 0)
+                forward = forward - 1 * Time.deltaTime;
+        }
+        else
+        {
+            currentForwardAccel -= 5 * Time.deltaTime;
+            speedInput = currentForwardAccel * reverseAccel; ;
+            if (forward > 0)
+                forward = forward - 1 * Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {

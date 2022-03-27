@@ -33,6 +33,7 @@ public class OnButtonManagerStartScene : MonoBehaviour
     [SerializeField] Button hardwareTutorialBtn;
     [SerializeField] Button inGameTutorialBtn;
     [SerializeField] Button prepareYourselfBtn;
+    [SerializeField] Button signBtn;
     [SerializeField] Button closePopup;
     [SerializeField] GameObject PopupImage;
     [SerializeField] RawImage manualImage;
@@ -70,10 +71,11 @@ public class OnButtonManagerStartScene : MonoBehaviour
         tutorialBtn.onClick.AddListener(() => OnChangeScene("TutorialScene"));
         cityBtn.onClick.AddListener(() => OnChangeScene("CityScene"));
         countrysideBtn.onClick.AddListener(() => OnChangeScene("CountrysideScene"));
-        //PracticalMenu Button
+        //ManualMenu Button
         hardwareTutorialBtn.onClick.AddListener(() => OnimageLoader("HandManual"));
         inGameTutorialBtn.onClick.AddListener(() => OnimageLoader("InGameGuide"));
         prepareYourselfBtn.onClick.AddListener(() => OnimageLoader("PrepareYourself"));
+        signBtn.onClick.AddListener(() => OnimageLoader("Sign"));
         closePopup.onClick.AddListener(() => OnCloseImage(PopupImage));
     }
     void OnChangePanel(int nextPanel) 

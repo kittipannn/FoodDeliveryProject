@@ -13,6 +13,7 @@ public class TestManager : MonoBehaviour
     [SerializeField] Button backToMenuBtn;
     [SerializeField] Button doneBtn;
     [SerializeField] Button backToMainBtn;
+    [SerializeField] Button backToMainQuizBtn;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class TestManager : MonoBehaviour
         backToMenuBtn.onClick.AddListener(() => OnBackToMenu());
         doneBtn.onClick.AddListener(() => OnRestartQuiz());
         backToMainBtn.onClick.AddListener(() => OnBackToMain());
+        backToMainQuizBtn.onClick.AddListener(() => OnBackToMain());
     }
     void OnBackToMenu() 
     {

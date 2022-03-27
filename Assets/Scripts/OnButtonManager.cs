@@ -6,13 +6,18 @@ public class OnButtonManager : MonoBehaviour
 {
     [SerializeField] GamePlay gamePlay;
 
-    [SerializeField] Button restart;
-    [SerializeField] Button BacktoMainMenu;
-    
+    [SerializeField] Button restartOver;
+    [SerializeField] Button BacktoMainMenuOver;
+    [SerializeField] Button restartOption;
+    [SerializeField] Button BacktoMainMenuOption;
+
     private void Start()
     {
-        restart.onClick.AddListener(Onrestart);
-        BacktoMainMenu.onClick.AddListener(OnBacnkToMainMenu);
+        restartOver.onClick.AddListener(Onrestart);
+        BacktoMainMenuOver.onClick.AddListener(OnBacnkToMainMenu);
+
+        restartOption.onClick.AddListener(Onrestart);
+        BacktoMainMenuOption.onClick.AddListener(OnBacnkToMainMenu);
     }
     void Onrestart() 
     {
