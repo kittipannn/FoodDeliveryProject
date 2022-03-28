@@ -150,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968102325328689815}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.08, y: 0.832, z: 230.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -360,6 +360,8 @@ MonoBehaviour:
   - {fileID: 1968102326303463388}
   - {fileID: 1968102324976283624}
   - {fileID: 1968102325355451865}
+  crosswalkColli: {fileID: 1968102326574735175}
+  stopCollider: {fileID: 1968102325861998346}
 --- !u!1 &1968102325861998350
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossWalkTrigger: {fileID: 1968102325441437320}
+  crossWalkColli: {fileID: 1968102326574735177}
 --- !u!1 &1968102326303463391
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,3 +624,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingValue: {fileID: 11400000, guid: 0bb2d6208a22dd742a5deec7d79034e3, type: 2}
+  NumOfEvent: 0

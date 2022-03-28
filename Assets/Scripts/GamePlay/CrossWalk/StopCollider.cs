@@ -6,6 +6,7 @@ public class StopCollider : MonoBehaviour
 {
     List<crossWalkScript> crossWalkScriptList;
     [SerializeField] crossWalkTrigger crossWalkTrigger;
+    [SerializeField] GameObject crossWalkColli;
     int numOfPeople;
     private void Start()
     {
@@ -30,7 +31,7 @@ public class StopCollider : MonoBehaviour
         {
             if (crossWalkScriptList.Count == numOfPeople)
             {
-                GameObject.FindObjectOfType<CrossWalkCollider>().gameObject.SetActive(false);
+                crossWalkColli.SetActive(false);
                 this.enabled = false;
             }
         }

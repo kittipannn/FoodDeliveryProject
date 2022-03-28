@@ -37,6 +37,11 @@ public class SphereController : MonoBehaviour
     float timeTurnLight;
     float timetoChange = 0.5f;
     int valueTurnlight = 0;
+    //check Event Turnlight
+    float turnLightcountTime;
+    [SerializeField] float timeToCheck = 2;
+    bool checkEvent = false;
+    public int NumOfEvent;
     void Start()
     {
         rb.transform.parent = null;
@@ -49,6 +54,7 @@ public class SphereController : MonoBehaviour
     {
         TurnlightSystem(valueTurnlight);
         inputSystem();
+        checkTurnlight();
     }
     void inputSystem() 
     {
@@ -82,7 +88,7 @@ public class SphereController : MonoBehaviour
         }
         turnInput = Input.GetAxis("Horizontal");
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
-        /*Debug.Log(steerAndWheel.localRotation);*/ // ใช้ y z
+   
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
         transform.position = rb.transform.position;
     }
@@ -136,7 +142,40 @@ public class SphereController : MonoBehaviour
             rb.AddForce(transform.forward * speedInput);
         }
     }
+    void checkTurnlight() 
+    {
+        float angle = steerAndWheel.localEulerAngles.z;
+        if (Mathf.Abs(speedInput) > 0 && !checkEvent) // left 70 right 290 from max steer turn
+        {
+            if (angle == 70 && valueTurnlight != 1)
+            {
+                if (turnLightcountTime > timeToCheck) 
+                { 
+                    GameEvents.gameEvents.decreaseBehavPlayer(1);
+                    checkEvent = true;
+                    GameEvents.gameEvents.checkEvents(NumOfEvent);
+                    turnLightcountTime = 0; 
+                }
+                else turnLightcountTime += Time.deltaTime; ;
+            }
+            else if (angle == 290 && valueTurnlight != 2)
+            {
+                if (turnLightcountTime > timeToCheck) 
+                { 
+                    GameEvents.gameEvents.decreaseBehavPlayer(1);
+                    checkEvent = true;
+                    GameEvents.gameEvents.checkEvents(NumOfEvent);
+                    turnLightcountTime = 0; 
+                }
+                else turnLightcountTime += Time.deltaTime; ;
+            }
+            else
+            {
+                turnLightcountTime = 0;
 
+            }
+        }
+    }
     public float playerMarkerRot()
     {
         float markerRot;
