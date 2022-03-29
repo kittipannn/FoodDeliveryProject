@@ -11,6 +11,8 @@ public class CarAiNavMesh : MonoBehaviour
 
     [SerializeField] private Collider stopTrigger;
 
+    [SerializeField] private float speedd;
+
     public float wheelSpinningSpeed = 50f;
 
     private NavMeshAgent navMeshAgent;
@@ -23,6 +25,11 @@ public class CarAiNavMesh : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         //this.GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        navMeshAgent.speed = speedd;
     }
     private void Update()
     {
@@ -55,14 +62,28 @@ public class CarAiNavMesh : MonoBehaviour
             other.gameObject.SetActive(false);
         }
 
+        if (other.gameObject.CompareTag("AiBrakeTrigger"))
+        {
+            Debug.Log("enter");
+            navMeshAgent.speed = 0f;
+        }
+        
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("AiBrakeTrigger"))
+        {
+            Debug.Log("out");
+            navMeshAgent.speed = speedd;
+        }
     }
 
     IEnumerator AiStop()
     {
         navMeshAgent.speed = 0f;
         yield return new WaitForSeconds(stopSecond);
-        navMeshAgent.speed = 3.5f;
+        navMeshAgent.speed = speedd;
         isMoving = true;
     }
 }

@@ -31,12 +31,10 @@ public class HumanAi : MonoBehaviour
     {
         if (other == Trigger1)
         {
-            Debug.Log("HumanTrigger 1 Hit");
             navMeshAgentHuman.destination = targetPoint2.transform.position;
         }
         else if (other == Trigger2)
         {
-            Debug.Log("HumanTrigger 2 Hit");
             navMeshAgentHuman.destination = targetPoint1.transform.position;
         }
     }

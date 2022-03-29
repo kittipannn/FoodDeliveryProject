@@ -11,6 +11,7 @@ TagManager:
   - TutorialPanel
   - Car
   - AiStopTrigger
+  - AiBrakeTrigger
   layers:
   - Default
   - TransparentFX
