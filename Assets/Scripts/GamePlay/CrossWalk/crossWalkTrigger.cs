@@ -5,13 +5,15 @@ using UnityEngine;
 public class crossWalkTrigger : MonoBehaviour
 {
     [SerializeField] crossWalkScript[] crossingPeople;
+    [SerializeField] CrossWalkCollider crosswalkColli;
+    [SerializeField] StopCollider stopCollider;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Enable Script CrossWalk");
-            GameObject.FindObjectOfType<CrossWalkCollider>().enabled = true;
-            GameObject.FindObjectOfType<StopCollider>().enabled = true;
+            crosswalkColli.enabled = true;
+            stopCollider.enabled = true;
             foreach (var item in crossingPeople)
             {
                 item.enabled = true;
