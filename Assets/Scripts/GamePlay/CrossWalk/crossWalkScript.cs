@@ -42,7 +42,7 @@ public class crossWalkScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("StopCollider"))
+        if (other.gameObject.CompareTag("Stopp"))
         {
             rb.velocity = Vector3.zero;
             this.enabled = false;

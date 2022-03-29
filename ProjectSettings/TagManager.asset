@@ -12,6 +12,7 @@ TagManager:
   - Car
   - AiStopTrigger
   - AiBrakeTrigger
+  - Stopp
   layers:
   - Default
   - TransparentFX

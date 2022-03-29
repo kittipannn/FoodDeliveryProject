@@ -44,9 +44,12 @@ namespace SAP2D {
 
         public SphereController playerMkRot;
 
+        bool connectedArduino = false;
+
         private void Start()
         {
             pathfinder = SAP2DPathfinder.singleton;
+            connectedArduino = ArduinoHand.arduino.Connected;
         }
 
         private void Update()
@@ -104,7 +107,16 @@ namespace SAP2D {
 
         private void FixedUpdate()
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * playerMkRot.forward));
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * playerMkRot.forward));
+
+            if (connectedArduino)
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * playerMkRot.forward));
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, 0f, -1 * playerMkRot.turnInput * playerMkRot.turnStrength * Time.deltaTime * Input.GetAxis("Vertical")));
+            }
         }
 
         private IEnumerator FindPath()

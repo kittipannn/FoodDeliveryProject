@@ -32,6 +32,7 @@ public class StopCollider : MonoBehaviour
             if (crossWalkScriptList.Count == numOfPeople)
             {
                 crossWalkColli.SetActive(false);
+                this.gameObject.SetActive(false);
                 this.enabled = false;
             }
         }
