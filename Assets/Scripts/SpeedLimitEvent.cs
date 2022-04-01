@@ -9,6 +9,8 @@ public class SpeedLimitEvent : MonoBehaviour
     [SerializeField] float speedCity = 80f;
     [SerializeField] float speedCountrySide = 90f;
     float speedlimitInscene;
+    public int NumOfEvent;
+    bool checkEvent = false;
     private void Awake()
     {
         if (sceneName == null)
@@ -25,9 +27,12 @@ public class SpeedLimitEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.PlayerSpeed >= speedlimitInscene)
+        if (player.PlayerSpeed >= speedlimitInscene && !checkEvent)
         {
             Debug.Log("Out off limits");
+            checkEvent = true;
+            GameEvents.gameEvents.checkEvents(NumOfEvent);
+            GameEvents.gameEvents.decreaseBehavPlayer(1);
         }
     }
     void LimitSpeedInScene(string name) 
@@ -37,7 +42,7 @@ public class SpeedLimitEvent : MonoBehaviour
             case "CityScene":
                 speedlimitInscene = speedCity;
                 break;
-            case "CountrySideScene":
+            case "CountrysideScene":
                 speedlimitInscene = speedCountrySide;
                 break;
             default:

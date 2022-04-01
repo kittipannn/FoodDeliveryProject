@@ -10,6 +10,7 @@ public class OnButtonManager : MonoBehaviour
     [SerializeField] Button BacktoMainMenuOver;
     [SerializeField] Button restartOption;
     [SerializeField] Button BacktoMainMenuOption;
+    [SerializeField] Button BacktoMainMenuFinish;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class OnButtonManager : MonoBehaviour
 
         restartOption.onClick.AddListener(Onrestart);
         BacktoMainMenuOption.onClick.AddListener(OnBacnkToMainMenu);
+        BacktoMainMenuFinish.onClick.AddListener(OnBacnkToMainMenu);
     }
     void Onrestart() 
     {

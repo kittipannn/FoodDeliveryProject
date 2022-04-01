@@ -1149,8 +1149,8 @@ MonoBehaviour:
   steerAndWheel: {fileID: 1067396639539261415}
   maxSteerTurn: 70
   uIManager: {fileID: 0}
-  timeToCheck: 1
-  NumOfEvent: 0
+  timeToCheck: 0.25
+  NumOfEvent: 1
 --- !u!114 &8514352649005923850
 MonoBehaviour:
   m_ObjectHideFlags: 0
