@@ -11,16 +11,26 @@ public class TrafficLight : MonoBehaviour
     [SerializeField] int yellowTime = 3;
     [SerializeField] int redTime = 7;
     [SerializeField] GameObject triggerTraffic;
-    public List<GameObject> test;
+    public List<GameObject> Light;
+    bool start = false;
     void Start()
     {
-        foreach (var gameObject in test)
+        foreach (var gameObject in Light)
         {
             gameObject.SetActive(false);
         }
         currentTrafficLight = 0;
         setTrafficLight();
         setCollider();
+        this.enabled = false;
+    }
+    private void OnEnable()
+    {
+        currentTrafficLight = 0;
+        setTrafficLight();
+        setCollider();
+        timeCount = 5;
+        start = true;
     }
     //private void OnEnable()
     //{
@@ -32,7 +42,10 @@ public class TrafficLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changeLight();
+        if (start)
+        {
+            changeLight();
+        }
     }
     void changeLight() 
     {
@@ -70,11 +83,11 @@ public class TrafficLight : MonoBehaviour
     }
     void setTrafficLight() 
     {
-        foreach (var item in test)
+        foreach (var item in Light)
         {
             item.SetActive(false);
         }
-        test[currentTrafficLight].SetActive(true);
+        Light[currentTrafficLight].SetActive(true);
     }
     void setCollider() 
     {
