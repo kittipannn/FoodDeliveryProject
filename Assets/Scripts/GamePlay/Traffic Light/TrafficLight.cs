@@ -29,7 +29,7 @@ public class TrafficLight : MonoBehaviour
         currentTrafficLight = 0;
         setTrafficLight();
         setCollider();
-        timeCount = 5;
+        timeCount = 6;
         start = true;
     }
     //private void OnEnable()
