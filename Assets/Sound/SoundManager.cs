@@ -43,7 +43,7 @@ public class SoundManager : MonoBehaviour
     {
 
         AudioListener.pause = muted;
-        //Play("BGM");
+        Play("BGM");
     }
 
     private void LoadValueSoundControl() 
