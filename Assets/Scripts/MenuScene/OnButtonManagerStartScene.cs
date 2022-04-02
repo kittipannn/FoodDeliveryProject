@@ -92,6 +92,7 @@ public class OnButtonManagerStartScene : MonoBehaviour
     }
     void OnBack() 
     {
+
         foreach (var panels in Panel)
         {
             panels.SetActive(false);
