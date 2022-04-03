@@ -56,6 +56,8 @@ public class SphereController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.pitch = minPitch;
         pitchFromDriving = 0;
+        int test = 1;
+        playerBreak = test == 1 ? true : false;
     }
 
 
@@ -81,7 +83,7 @@ public class SphereController : MonoBehaviour
         {
             case true:
                 inputArduino();
-                inputKeyboard();
+                //inputKeyboard();
                 break;
             case false:
                 inputKeyboard();
@@ -117,8 +119,7 @@ public class SphereController : MonoBehaviour
         speedInput = 0f;
         forwardAccel = ArduinoHand.arduino.speedArduino;
         valueTurnlight = ArduinoHand.arduino.turnlightArduino;
-        int test = 0;
-        playerBreak = test == 0 ? true : false ;
+        playerBreak = ArduinoHand.arduino.brakeArduino == 1 ? true : false;
         if (forwardAccel >= currentForwardAccel)
         {
             currentForwardAccel = forwardAccel;

@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 
     [Header("SettingPanel")]
     [SerializeField] GameObject optionPanel;
+    public bool onOption = true;
 
     [Header("GameOverPanel")]
     [SerializeField] GameObject gameOverPanel;
@@ -84,15 +85,20 @@ public class UIManager : MonoBehaviour
 
     void OnOption()
     {
-        if (!optionPanel.activeInHierarchy)
+        if (onOption)
         {
-            optionPanel.SetActive(true);
-            Time.timeScale = 0;
-        }
-        else
-        {
-            optionPanel.SetActive(false);
-            Time.timeScale = 1;
+            if (!optionPanel.activeInHierarchy)
+            {
+                onOption = false;
+                optionPanel.SetActive(true);
+                UIAnimation.uiAnimaInstance.OnOptionPanel();
+
+            }
+            else
+            {
+                optionPanel.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
     string displayTimer()
@@ -142,18 +148,22 @@ public class UIManager : MonoBehaviour
             }
             descriptionText[i].text = checkEvents.eventInScenes[i].eventDetails;
         }
-
+        UIAnimation.uiAnimaInstance.OnfinishPanel();
     }
     void OnGameOverPanel() 
     {
         gameOverPanel.SetActive(true);
-        if (gamePlay.LimitTime < 0)
+        if (gamePlay.LimitTime <= 0)
         {
             timeOutImage.SetActive(true);
             OverImage.SetActive(false);
+            UIAnimation.uiAnimaInstance.OnOverPanel(timeOutImage);
         }
         else
+        {
             OverImage.SetActive(true);
+            UIAnimation.uiAnimaInstance.OnOverPanel(OverImage);
+        }
     }
     public void changeImgTurnlight(int i)
     {

@@ -58,27 +58,12 @@ public class ArduinoHand : MonoBehaviour
         {
             try
             {
-                //Value from Arduino = Steer,Speed,Break,Turn signal
-
-                //--- Speed ---
                 AllvalueFromArdu = stream.ReadLine();
                 value = AllvalueFromArdu.Split(new char[] { ',' });
                 valueFromArduBrake = value[0];
                 valueFromArduSpeed = value[1];
                 valueFromArduSteering = value[2];
                 valueFromArduturningLight = value[3];
-                //valueFromArduGas = vec3[1];
-                //valueFromArduBrake = vec3[2];
-                //valueFromArduSteering = stream.ReadLine();
-                //valueFromArduGas = stream.ReadLine();
-                //valueFromArduBrake = stream.ReadLine();
-                //speedInput = float.Parse(valueFromArduGas);
-                ////breakInput = float.Parse(valueFromArduBrake);
-                //turnInput = float.Parse(valueFromArduSteering);
-                //Debug.Log(AllvalueFromArdu);
-                //Debug.Log(valueFromArduSteering);
-                //Debug.Log(valueFromArduGas);
-                //Debug.Log(valueFromArduBrake);
             }
             catch { }
 

@@ -69,9 +69,16 @@ public class CarAiNavMesh : MonoBehaviour
         {
             Debug.Log("enter");
             navMeshAgent.speed = 0f;
+            isMoving = false;
             SoundManager.soundInstance.Play("Horn");
         }
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            navMeshAgent.speed = 0f;
+            audioSource.Pause();
+            isMoving = false;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)

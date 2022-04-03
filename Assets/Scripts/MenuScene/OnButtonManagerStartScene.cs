@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class OnButtonManagerStartScene : MonoBehaviour
 {
     [SerializeField] SceneLoader sceneLoader;
+    UiAnimationMenu uiAnimationMenu;
     [SerializeField] Button backBtn;
 
     [Header ("MainMenu")]
@@ -51,6 +52,10 @@ public class OnButtonManagerStartScene : MonoBehaviour
     int numOfManualPanel = 4;
     string pathImage = "Image/Manual";
     Stack<int> previousPanel = new Stack<int>();
+    private void Awake()
+    {
+        uiAnimationMenu = gameObject.GetComponent<UiAnimationMenu>();
+    }
     private void Start()
     {
         backBtn.onClick.AddListener(() => OnBack());
@@ -113,6 +118,7 @@ public class OnButtonManagerStartScene : MonoBehaviour
         string imagePath = pathImage + "/" + nameImage;
         Texture2D image = Resources.Load(imagePath) as Texture2D;
         manualImage.texture = image;
+        uiAnimationMenu.OpenMunaulPopup();
     }
     void OnCloseImage(GameObject popUp) 
     {
