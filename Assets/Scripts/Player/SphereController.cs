@@ -42,11 +42,20 @@ public class SphereController : MonoBehaviour
     [SerializeField] float timeToCheck = 2;
     bool checkEvent = false;
     public int NumOfEvent;
+
+    AudioSource audioSource;
+    public float minPitch = 1f;
+    public float maxPitch = 2f;
+    float pitchFromDriving;
     void Start()
     {
         rb.transform.parent = null;
         playerSpeed = 0;
         connectedArduino = ArduinoHand.arduino.Connected;
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.pitch = minPitch;
+        pitchFromDriving = 0;
     }
 
 
@@ -55,6 +64,16 @@ public class SphereController : MonoBehaviour
         TurnlightSystem(valueTurnlight);
         inputSystem();
         checkTurnlight();
+        if (pitchFromDriving >= maxPitch)
+        {
+            pitchFromDriving = maxPitch;
+        }
+        else if (pitchFromDriving <= minPitch)
+        {
+            pitchFromDriving = minPitch;
+        }
+
+        audioSource.pitch = pitchFromDriving;
     }
     void inputSystem() 
     {
@@ -85,6 +104,7 @@ public class SphereController : MonoBehaviour
         {
             playerSpeed = 0f;
             speedInput = 0f;
+            pitchFromDriving -= 0.02f;
         }
         turnInput = Input.GetAxis("Horizontal");
         steerAndWheel.localRotation = Quaternion.Euler(steerAndWheel.localRotation.eulerAngles.x, steerAndWheel.localRotation.eulerAngles.y, turnInput * maxSteerTurn);
@@ -108,6 +128,7 @@ public class SphereController : MonoBehaviour
         else
         {
             brake();
+            pitchFromDriving -= 0.02f;
         }
         playerSpeed = rb.velocity.magnitude;
         turnInput = ArduinoHand.arduino.steerArduino / 10;
@@ -140,6 +161,7 @@ public class SphereController : MonoBehaviour
         if(Mathf.Abs(speedInput) > 0)
         {
             rb.AddForce(transform.forward * speedInput);
+            pitchFromDriving += 0.01f;
         }
     }
     void checkTurnlight() 
