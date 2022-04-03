@@ -8,7 +8,7 @@ public class PlayerBehav : MonoBehaviour
     //{
     //    if (collision.gameObject.CompareTag("People"))
     //    {
-    //        GameEvents.gameEvents.gameOver();
+    //        //SoundManager.soundInstance.Play("Hit");
     //    }
     //}
 }

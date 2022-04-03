@@ -8,6 +8,7 @@ public class TrafficCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SoundManager.soundInstance.Play("Hit");
             GameEvents.gameEvents.gameOver();
         }
     }
