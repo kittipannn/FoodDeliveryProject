@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioMixer mixer;
     public static SoundManager soundInstance;
     private bool muted = false;
-
+    string sceneName;
     private void Awake()
     {
         //DontDestroyOnLoad(this.gameObject);
@@ -38,12 +38,23 @@ public class SoundManager : MonoBehaviour
         {
             LoadValueSoundControl();
         }
+        if (sceneName == null)
+            sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
     }
     private void Start()
     {
 
         AudioListener.pause = muted;
         Play("BGM");
+        //switch (name)
+        //{
+        //    case "CityScene":
+        //        Play("Ambient");
+        //        break;
+        //    case "CountrysideScene":
+        //        Play("Ambient");
+        //        break;
+        //}
     }
 
     private void LoadValueSoundControl() 
@@ -75,6 +86,16 @@ public class SoundManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+    public void Pause(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound : " + name + " Not found!");
+            return;
+        }
+        s.source.Pause();
     }
     public void OnSoundControl(bool mute)
     {

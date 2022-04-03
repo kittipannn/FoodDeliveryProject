@@ -19,6 +19,7 @@ public class GamePlay : MonoBehaviour
     public float setLimit; // ไว้ test สำหรับ ดูว่าถ้าเอาไปใส่ที่อื่นจะได้ไหม
     private bool timerIsRunning = false;
 
+    bool Over = false;
     private void Awake()
     {
         maxBehavPlayer = checkEvents.eventInScenes.Count;
@@ -32,8 +33,9 @@ public class GamePlay : MonoBehaviour
         GameEvents.gameEvents.onDecreaseBehavPlayer += decreaseBehav;
         GameEvents.gameEvents.onStartGame += playerStartGame;
         GameEvents.gameEvents.onGameOver += GameOver;
+
         //Setting
-        
+
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<SphereController>().enabled = false;
         LimitTime = setLimit;
@@ -46,6 +48,8 @@ public class GamePlay : MonoBehaviour
     //BehavStat
     private void decreaseBehav(float decreaseValue)
     {
+        CameraShake.Instance.shakeCamera(1f, 0.1f);
+        SoundManager.soundInstance.Play("DecreaseBehav");
         currentBehavPlayer -= decreaseValue;
         //setPlayerPrefsBehavStatus();
         GameEvents.gameEvents.UpdateStatusPlayer();
@@ -69,9 +73,16 @@ public class GamePlay : MonoBehaviour
     //gameOver
     private void GameOver() 
     {
+        
         Debug.Log("GameOver");
         Player.GetComponent<SphereController>().enabled = false;
         currentBehavPlayer = maxBehavPlayer;
+        if (!Over)
+        {
+            Over = true;
+            SoundManager.soundInstance.Play("Lose");
+            SoundManager.soundInstance.Pause("BGM");
+        }
         //setPlayerPrefsBehavStatus();
 
     }

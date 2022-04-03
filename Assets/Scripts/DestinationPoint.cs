@@ -10,6 +10,8 @@ public class DestinationPoint : MonoBehaviour
         {
             GameObject Player = GameObject.FindGameObjectWithTag("Player");
             Player.GetComponent<SphereController>().enabled = false;
+            SoundManager.soundInstance.Play("Win");
+            SoundManager.soundInstance.Pause("BGM");
             GameEvents.gameEvents.finishGame();
         }
     }

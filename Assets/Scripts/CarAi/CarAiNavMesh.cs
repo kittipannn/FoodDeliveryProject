@@ -21,9 +21,11 @@ public class CarAiNavMesh : MonoBehaviour
 
     bool isMoving = false;
 
+    AudioSource audioSource;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         //this.GetComponent<Rigidbody>();
     }
 
@@ -42,6 +44,7 @@ public class CarAiNavMesh : MonoBehaviour
     {
         navMeshAgent.destination = target.position;
         isMoving = true;
+        audioSource.Play();
     }
 
     public void WheelSpinning()
@@ -66,6 +69,7 @@ public class CarAiNavMesh : MonoBehaviour
         {
             Debug.Log("enter");
             navMeshAgent.speed = 0f;
+            SoundManager.soundInstance.Play("Horn");
         }
         
     }
@@ -76,6 +80,7 @@ public class CarAiNavMesh : MonoBehaviour
         {
             Debug.Log("out");
             navMeshAgent.speed = speedd;
+            SoundManager.soundInstance.Pause("Horn");
         }
     }
 
