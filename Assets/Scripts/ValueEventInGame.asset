@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ValueEventInGame
   m_EditorClassIdentifier: 
   decreaseValueCrossWalk: 1
-  limitedSpeedInSchoolArea: 5
+  limitedSpeedInSchoolArea: 3
   decreaseValueSchoolArea: 1
   decreaseTimeSchoolArea: 1.5
   decreaseValueTrafficLight: 1

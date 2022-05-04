@@ -33,6 +33,7 @@ public class GamePlay : MonoBehaviour
         GameEvents.gameEvents.onDecreaseBehavPlayer += decreaseBehav;
         GameEvents.gameEvents.onStartGame += playerStartGame;
         GameEvents.gameEvents.onGameOver += GameOver;
+        GameEvents.gameEvents.onFinishGame += () => timerIsRunning = false;
 
         //Setting
 

@@ -120,7 +120,11 @@ public class SphereController : MonoBehaviour
         forwardAccel = ArduinoHand.arduino.speedArduino;
         valueTurnlight = ArduinoHand.arduino.turnlightArduino;
         playerBreak = ArduinoHand.arduino.brakeArduino == 1 ? true : false;
-        if (forwardAccel >= currentForwardAccel)
+        if (playerBreak)
+        {
+            forwardAccel *= 0;
+        }
+        if (forwardAccel >= 0)
         {
             currentForwardAccel = forwardAccel;
             speedInput = forwardAccel * 40;
@@ -154,12 +158,12 @@ public class SphereController : MonoBehaviour
             currentForwardAccel -= 5 * Time.deltaTime;
             speedInput = currentForwardAccel * reverseAccel; ;
             if (forward > 0)
-                forward = forward - 1 * Time.deltaTime;
+                forward = forward - 0.1f * Time.deltaTime;
         }
     }
     private void FixedUpdate()
     {
-        if(Mathf.Abs(speedInput) > 0)
+        if(Mathf.Abs(speedInput) > 0.5f)
         {
             rb.AddForce(transform.forward * speedInput);
             pitchFromDriving += 0.01f;
@@ -168,9 +172,10 @@ public class SphereController : MonoBehaviour
     void checkTurnlight() 
     {
         float angle = steerAndWheel.localEulerAngles.z;
+
         if (Mathf.Abs(speedInput) > 0 && !checkEvent) // left 70 right 290 from max steer turn
         {
-            if (angle == 70 && valueTurnlight != 1)
+            if (angle >= 70 && angle < 90 && valueTurnlight != 2)
             {
                 if (turnLightcountTime > timeToCheck) 
                 { 
@@ -181,7 +186,7 @@ public class SphereController : MonoBehaviour
                 }
                 else turnLightcountTime += Time.deltaTime; ;
             }
-            else if (angle == 290 && valueTurnlight != 2)
+            else if (angle > 290 && angle < 300 && valueTurnlight != 1)
             {
                 if (turnLightcountTime > timeToCheck) 
                 { 
